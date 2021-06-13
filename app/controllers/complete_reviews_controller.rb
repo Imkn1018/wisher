@@ -12,8 +12,6 @@ class CompleteReviewsController < ApplicationController
     redirect_to wish_path(wish)
   end
 
-
-
   private
 
   def review_params

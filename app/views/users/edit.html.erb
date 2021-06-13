@@ -1,0 +1,29 @@
+
+<div class="container">
+  <div class="badge badge-light my-4">
+    <h3>会員情報編集</h3>
+  </div>
+  
+    <%= form_with(model: @user,url: users_path,local: true)do |f|%>
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"氏名"%>
+      </div>
+      <div class="col-8">
+        <%= f.text_field :name%>
+      </div>
+    </div>
+    
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"メールアドレス"%>
+      </div>
+      <div class="col-8">
+        <%= f.email_field :email,class:"mb-4"%><br>
+        <!--users_retire_pathについては要相談？-->
+        <%= f.submit "編集内容を保存する",class:"btn btn-success"%>
+      </div>
+    </div>
+    <%end%>
+
+</div>
