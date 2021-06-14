@@ -4,10 +4,18 @@ class WishesController < ApplicationController
     @wish = current_user.wishes.new
   end
   def index
-       user = User.find_by(id: current_user.id)
-       @wishes = user.wishes.where(:isCompleted => false)
-       @wish = current_user.wishes.new
+     user = User.find_by(id: current_user.id)
+
+     if params[:tag_id]
        @tag_list = Tag.all
+        @tag = Tag.find(params[:tag_id])
+        @wishes = @tag.wishes.where(:isCompleted => false)
+    # タグ一覧？
+     else
+     @wishes = user.wishes.where(:isCompleted => false)
+     @wish = current_user.wishes.new
+     @tag_list = Tag.all
+     end
 
   end
   def create

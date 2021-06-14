@@ -1,4 +1,7 @@
 index
+<% @tag_list.each do |list| %>
+     <p><%=link_to list.tag_name,wishes_path(tag_id:list.id)%><%= list.wishes.count %></p>
+  <% end %>
 <table class="table table-bordered border-dark">
  <tbody>
 <% @wishes.each do |wish| %>

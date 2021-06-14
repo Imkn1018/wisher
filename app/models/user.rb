@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :wishes, dependent: :destroy
   has_many:complete_reviews, dependent: :destroy
-  has_many:tags,dependent: :destroy
+  
   attachment :image
   validates :name, presence: true
 end

@@ -7,6 +7,18 @@
     <div class="col-md-7 mt-2">
       <h4 class="mt-2"><%= @wish.wish_title %></h4>
       <div class="mt-3"><%= @wish.memo %></div>
+      <table>
+        <tbody>
+          <% @wish_tags.each do |wish_tag| %>
+          <tr>
+            <td>
+              <%= link_to wish_tag.tag_name, wishes_path(tag_id: wish_tag.id) %>
+
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
 
     </div>
   </div>
@@ -19,15 +31,15 @@
     <% end  %>
  </div>
 
-
+<%  if @wish.isCompleted == true  %>
 <p>コメント件数：<%= @wish.complete_reviews.count %></p>
 <% @wish.complete_reviews.each do |complete_review| %>
 
   <%= complete_review.review_title %>
   <%= complete_review.review %>
-  
+
     <%= attachment_image_tag complete_review, :complete_image, size:'200x200' %>
- 
+
   <%= complete_review.created_at.strftime('%Y/%m/%d') %><%= complete_review.review %>
 <% end %>
 </div>
@@ -39,3 +51,4 @@
   <%= f.submit "送信する" %>
 <% end %>
 </div>
+<% end  %>
