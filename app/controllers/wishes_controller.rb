@@ -37,6 +37,7 @@ class WishesController < ApplicationController
 
   def edit
     @wish = Wish.find_by(params[:id])
+    @tag_list = @wish.tags.pluck(:tag_name).join(nil)
   end
 
   def update
