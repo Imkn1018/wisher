@@ -12,6 +12,25 @@ class CompleteReviewsController < ApplicationController
     redirect_to wish_path(wish)
   end
 
+  def show
+    @wish = Wish.find(params[:id])
+    @review = CompleteReview.find_by(id: params[:id], wish_id: params[:wish_id])
+  end
+
+  def edit
+    @wish = Wish.find(params[:wish_id])
+    @review = CompleteReview.find_by(id: params[:id], wish_id: params[:wish_id])
+  end
+
+  def update
+     @wish = Wish.find(params[:wish_id])
+     @review = CompleteReview.find_by(id: params[:id], wish_id: params[:wish_id])
+     if @review.update(review_params)
+      redirect_to wish_complete_review_path(@wish, @review)
+     else
+       render :edit
+     end
+  end
   private
 
   def review_params

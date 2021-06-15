@@ -20,7 +20,10 @@
           <td>tag</td>
           <td><%= f.text_field :tag_name, placeholder:"スペースを入力することで複数のタグを付けることができます。" %></td>
         </tr>
-       
+
       </tbody>
+      <%= f.submit "変更を保存", class: "btn btn-success my-2" %>
+      <% end  %>
+      <%= link_to '削除する', wish_path(@wish.id), method: :delete,data: { confirm: '本当に消去しますか?' } %>
   </div>
 </div>

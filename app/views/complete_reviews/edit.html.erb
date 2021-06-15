@@ -1,0 +1,9 @@
+
+<div class="new-comment">
+<%= form_with(model: [@wish,@review], local: true) do |f| %>
+  <%= f.text_area :review_title, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.text_area :review, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.attachment_field :complete_image %>
+  <%= f.submit "送信する" %>
+<% end %>
+</div>

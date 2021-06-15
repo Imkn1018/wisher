@@ -11,9 +11,10 @@
   </div>
 </div>
  <div class="row">
-   
+
      <div class="mx-auto">
-    <%= link_to "編集", edit_wish_complete_review_path(@review.id),class:"btn btn-danger ml-4"%>
+    <%= link_to "編集", edit_wish_complete_review_path(@review.wish_id, @review),class:"btn btn-danger ml-4"%>
     </div>
-    <% end  %>
+
+
  </div>

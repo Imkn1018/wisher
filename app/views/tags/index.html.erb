@@ -1,0 +1,7 @@
+<% @tag_list.each do |list| %>
+  <% if list.wishes.where(isCompleted:false).count != 0  %>
+     <p><%=link_to list.tag_name,wishes_path(tag_id:list.id)%><%= list.wishes.where(isCompleted:false).count %></p>
+     <!--タグによる叶えたいことリストの最初の要素の画像を表示-->
+     <%= attachment_image_tag list.wishes.where(isCompleted:false)[0], :wish_image , size:'200x200'%>
+  <% end %>
+<% end  %>

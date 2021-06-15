@@ -5,16 +5,16 @@ class WishesController < ApplicationController
   end
   def index
      user = User.find_by(id: current_user.id)
-
+    #  タグ内の叶えたいこと一覧表示
      if params[:tag_id]
        @tag_list = Tag.all
         @tag = Tag.find(params[:tag_id])
         @wishes = @tag.wishes.where(:isCompleted => false)
-    # タグ一覧？
+    # 通常の叶えたいこと一覧表示
      else
-     @wishes = user.wishes.where(:isCompleted => false)
-     @wish = current_user.wishes.new
-     @tag_list = Tag.all
+         @wishes = user.wishes.where(:isCompleted => false)
+         @wish = current_user.wishes.new
+         @tag_list = Tag.all
      end
 
   end
@@ -36,7 +36,7 @@ class WishesController < ApplicationController
   end
 
   def edit
-    @wish = Wish.find_by(params[:id])
+    @wish = Wish.find(params[:id])
     @tag_list = @wish.tags.pluck(:tag_name).join(nil)
   end
 
@@ -45,12 +45,17 @@ class WishesController < ApplicationController
     tag_list = params[:wish][:tag_name].split(nil)
     if @wish.save
       @wish.save_tag(tag_list)
-      redirect_back(fallback_location: root_path)
+      redirect_to wish_path(@wish)
     else
-      redirect_back(fallback_location: root_path)
+      render :edit
     end
   end
+ def destroy
+   @wish = Wish.find(params[:id])
+   @wish.destroy
 
+   redirect_to wishes_path
+ end
     def complete
       @wish = Wish.find(params[:id])
       @wish.update(isCompleted: true)
@@ -58,7 +63,16 @@ class WishesController < ApplicationController
     end
    def dones
       user = User.find_by(id: current_user.id)
-      @wishes = user.wishes.where(:isCompleted => true)
+      if params[:tag_id]
+       @tag_list = Tag.all
+        @tag = Tag.find(params[:tag_id])
+        @wishes = @tag.wishes.where(:isCompleted => true)
+    # タグ一覧？
+     else
+       @wishes = user.wishes.where(:isCompleted => true)
+       @wish = current_user.wishes.new
+       @tag_list = Tag.all
+     end
    end
       private
 

@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get "dones" => "wishes#dones",as: :wishes_dones
   patch "wishes/:id/complete" => "wishes#complete", as: :wishes_complete
   resources :tags
+  get "done_tags" => "tags#dones", as: :tags_dones
 end

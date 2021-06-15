@@ -23,9 +23,11 @@
     </div>
   </div>
 </div>
+
  <div class="row">
    <% if @wish.isCompleted == false %>
      <div class="mx-auto">
+       <%= link_to "編集する", edit_wish_path(@wish), class:"btn btn-success my-2" %>
     <%= link_to "叶えられた！", wishes_complete_path(@wish.id),method: :patch ,class:"btn btn-danger ml-4"%>
     </div>
     <% end  %>
@@ -37,9 +39,9 @@
 
   <%= complete_review.review_title %>
   <%= complete_review.review %>
-
+   <%= link_to wish_complete_review_path(complete_review.wish_id, complete_review) do %>
     <%= attachment_image_tag complete_review, :complete_image, size:'200x200' %>
-
+   <% end %>
   <%= complete_review.created_at.strftime('%Y/%m/%d') %><%= complete_review.review %>
 <% end %>
 </div>
