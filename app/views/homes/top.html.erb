@@ -1,1 +1,6 @@
 Welcome
+<% if user_signed_in? %>
+ <div></div>
+<% else  %>
+<%= link_to 'ゲストログイン（閲覧用）', homes_guest_sign_in_path, method: :post %>
+<%  end  %>
