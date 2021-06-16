@@ -50,29 +50,47 @@ class WishesController < ApplicationController
       render :edit
     end
   end
+#   叶えたいこと削除
  def destroy
    @wish = Wish.find(params[:id])
    @wish.destroy
 
    redirect_to wishes_path
  end
+#  叶えたいこと =>　叶えたことリストに変更
     def complete
       @wish = Wish.find(params[:id])
       @wish.update(isCompleted: true)
       redirect_to new_wish_complete_review_path(@wish)
     end
+    # 叶えたことリスト一覧表示
    def dones
-      user = User.find_by(id: current_user.id)
-      if params[:tag_id]
+     user = User.find_by(id: current_user.id)
+     if params[:tag_id]
        @tag_list = Tag.all
         @tag = Tag.find(params[:tag_id])
         @wishes = @tag.wishes.where(:isCompleted => true)
-    # タグ一覧？
+    # 全ての表示
      else
        @wishes = user.wishes.where(:isCompleted => true)
        @wish = current_user.wishes.new
        @tag_list = Tag.all
      end
+   end
+
+    # 叶えたことを叶えたいことに戻す
+   def backWish
+       @wish = Wish.find(params[:id])
+       @wish.update(isCompleted: false)
+    #   達成レビューを全て削除する
+       @wish.complete_reviews.destroy_all
+      redirect_to wishes_path
+   end
+
+# 叶えたことを叶えたいことに戻す前の確認画面の表示（達成レビューも全て削除するため）
+   def confirm
+       @wish = Wish.find(params[:id])
+       @wish_tags = @wish.tags
    end
       private
 

@@ -24,6 +24,10 @@
       </tbody>
       <%= f.submit "変更を保存", class: "btn btn-success my-2" %>
       <% end  %>
+      <% if @wish.isCompleted == false  %>
       <%= link_to '削除する', wish_path(@wish.id), method: :delete,data: { confirm: '本当に消去しますか?' } %>
+      <% else  %>
+      <%= link_to "叶えたいことに戻す", wishes_confirm_path(@wish.id) %>
+      <% end  %>
   </div>
 </div>

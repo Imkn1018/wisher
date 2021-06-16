@@ -54,3 +54,7 @@
 <% end %>
 </div>
 <% end  %>
+
+<% if @wish.isCompleted == true  %>
+  <%= link_to "叶えたいことに戻す", wishes_confirm_path(@wish) %>
+<% end  %>

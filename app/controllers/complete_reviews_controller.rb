@@ -31,6 +31,9 @@ class CompleteReviewsController < ApplicationController
        render :edit
      end
   end
+  
+  def destroy
+  end
   private
 
   def review_params
