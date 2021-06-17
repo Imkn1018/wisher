@@ -1,30 +1,32 @@
 class WishesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def new
     @wish = current_user.wishes.new
   end
-  
+
   def index
      user = User.find_by(id: current_user.id)
+     @tag_list = user.tags.all
     #  タグ内の叶えたいこと一覧表示
      if params[:tag_id]
-      　@tag_list = Tag.all
-        @tag = Tag.find(params[:tag_id])
-        @wishes = @tag.wishes.where(:isCompleted => false)
+
+      @tag = Tag.find(params[:tag_id])
+      @wishes = @tag.wishes.where(:isCompleted => false)
     # 通常の叶えたいこと一覧表示
      else
          @wishes = user.wishes.where(:isCompleted => false)
          @wish = current_user.wishes.new
-         @tag_list = Tag.all
+
      end
   end
-  
+
   def create
     #   違うユーザーでやる場合はsave_tagの中のuserを適宜入れる
     @wish = current_user.wishes.build(wish_params)
     tag_list = params[:wish][:tag_name].split(nil)
     if @wish.save
+        # current_userをつけることでuser_id取得
       @wish.save_tag(tag_list,current_user)
       redirect_to wishes_path
     else
@@ -47,7 +49,7 @@ class WishesController < ApplicationController
     @wish = Wish.find(params[:id])
     tag_list = params[:wish][:tag_name].split(nil)
     if @wish.save
-      @wish.save_tag(tag_list)
+      @wish.save_tag(tag_list,current_user)
       redirect_to wish_path(@wish)
     else
       render :edit
@@ -101,3 +103,4 @@ class WishesController < ApplicationController
         params.require(:wish).permit(:wish_title,:memo,:wish_image,:span,:difficulty,:url)
       end
 end
+  

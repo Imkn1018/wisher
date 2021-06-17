@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_06_11_230815) do
     t.string "wish_image_id"
     t.datetime "span"
     t.integer "difficutly"
-    t.boolean "isCompleted", default: false
+    t.boolean "isCompleted", default: false, null: false
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
