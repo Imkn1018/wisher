@@ -12,20 +12,22 @@ index
 <% if params[:tag_id]  %>
   <h1><%= @tag.tag_name %>のタグ</h1>
 <% end  %>
-<table class="table table-bordered border-dark">
- <tbody>
+
+<div class="container justify-center">
 <% @wishes.each do |wish| %>
-  <tr>
-    <td>
+  <div class="card p-4">
       <%= link_to wish_path(wish.id) do %>
         <%= attachment_image_tag wish, :wish_image , size:'200x200'%>
-      <% end %>
-    </td>
-    <td class="derivery-info"><%= wish.wish_title %></td>
-    <td class="derivery-info"><%= wish.memo %></td>
-    <td class="text-center">
-    </td>
-  </tr>
+
+
+<%= wish.wish_title %>
+    <%= wish.memo %>
+     <% wish.tags.each do |wish_tag| %>
+
+              <%= link_to wish_tag.tag_name, wishes_path(tag_id: wish_tag.id) %>
+
+ <% end %>
+          <% end %>
+    </div>
 <% end %>
-</tbody>
-</table>
+</div>
