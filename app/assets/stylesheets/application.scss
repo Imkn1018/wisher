@@ -1,0 +1,77 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+body {
+  font-size: 2rem;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: grid;
+  grid-template:
+    "header header header"
+    "left center right"
+    "footer footer footer"
+
+}
+
+header {
+  grid-area: header;
+}
+nav {
+  grid-area: left;
+}
+main {
+  grid-area: center;
+}
+aside {
+  grid-area: right;
+}
+footer {
+  grid-area: footer;
+}
+
+@media screen and (max-width: 1000px){
+  body {
+    grid-template:
+      "header"
+      "left"
+      "center"
+      "right"
+      "footer"
+  }
+}
+
+.card{
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.5em 1em -0.125em
+
+
+
+}
+
+.card_header {
+align-items: center;
+    color: #363636;
+    display: flex;
+    flex-grow: 1;
+    font-weight: 700;
+    padding: .75rem 1rem;
+}
