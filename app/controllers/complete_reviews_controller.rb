@@ -3,11 +3,12 @@ class CompleteReviewsController < ApplicationController
     @wish = Wish.find(params[:wish_id])
     @review = CompleteReview.new
   end
-
+  def index
+  end
   def create
-    wish = Wish.find(params[:wish_id])
+    @wish = Wish.find(params[:wish_id])
     @review = current_user.complete_reviews.new(review_params)
-    @review.wish_id = wish.id
+    @review.wish_id = @wish.id
     @review.save
     redirect_to wish_path(wish)
   end
@@ -31,7 +32,7 @@ class CompleteReviewsController < ApplicationController
        render :edit
      end
   end
-  
+
   def destroy
   end
   private

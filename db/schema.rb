@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_11_230815) do
+ActiveRecord::Schema.define(version: 2021_06_20_071019) do
 
   create_table "complete_reviews", force: :cascade do |t|
     t.integer "user_id"
@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(version: 2021_06_11_230815) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "purpose"
+    t.string "action"
   end
 
 end

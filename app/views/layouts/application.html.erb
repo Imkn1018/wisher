@@ -4,14 +4,14 @@
     <title>Wisher</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-warning">
+      <nav class="navbar navbar-expand-lg bg-info">
         <div class="container">
           <!-- 管理者側と顧客側で遷移先を変える　-->
 
@@ -23,19 +23,16 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
 
-              <!--会員ログイン-->
+              <!--ログイン-->
               <% if user_signed_in? %>
-                <li class="mr-5 pt-2 text-primary">ようこそ、<span class="mr-1"><%= current_user.name %></span>さん！</li>
-                <li><%= link_to "マイページ", users_path, class: "btn btn-outline-primary nav-link text-primary m-2" %></li>
-                <li><%= link_to "新規作成", new_wish_path, class: "btn btn-outline-primary nav-link text-primary m-2" %></li>
-                <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-primary nav-link text-primary m-2" %></li>
-
-              <!--管理者ログイン-->
-
+                <li class="mr-5 pt-2 text-white">ようこそ、<span class="mr-1"><%= current_user.name %></span>さん！</li>
+                <li><%= link_to "マイページ", users_path, class: "btn btn-outline-white nav-link text-white m-2" %></li>
+                <li><%= link_to "新規作成", new_wish_path, class: "btn btn-outline-white nav-link text-white m-2" %></li>
+                <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-white nav-link text-white m-2" %></li>
                 <!--ログイン前-->
               <% else %>
-              <li><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-primary nav-link text-primary m-2" %></li>
-              <li><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary nav-link text-primary m-2" %></li>
+              <li><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-primary nav-link text-white m-2" %></li>
+              <li><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary nav-link text-white m-2" %></li>
 
             <% end %>
           </ul>
@@ -49,5 +46,8 @@
   <footer>
     dddd
   </footer>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>

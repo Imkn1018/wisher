@@ -1,7 +1,8 @@
-<div class="container pt-3">
-　<h4 class="col-md-3 offset-1 bg-light text-center mt-2">商品新規登録</h4>
-
-　<div class="row pt-4">
+<div class="card">
+  <div class="d-flex flex-column  align-items-center text-align-center py-5 ">
+      <div class="card_header">
+        叶えたいことを追加する
+      </div>
     <%= form_with model:@wish, local:true do |f| %>
      <table class="table mx-auto table-borderless">
        <% if @wish.errors.any? %>
@@ -14,22 +15,39 @@
         <% end %>
        <tbody>
         <tr>
-          <td>商品画像</td>
+          <td>タイトル</td>
+          <td><%= f.text_field :wish_title, placeholder: "" %></td>
+        </tr>
+         <tr>
+          <td>イメージ</td>
           <td><%= f.attachment_field :wish_image %></td>
         </tr>
         <tr>
-          <td>商品名</td>
-          <td><%= f.text_field :wish_title, placeholder: "商品名" %></td>
+          <td>目的</td>
+          <td><%= f.text_field :purpose, placeholder: "" %></td>
         </tr>
         <tr>
-          <td>商品説明</td>
-          <td><%= f.text_area :memo, placeholder: "ここに説明文を記述" %></td>
+          <td>アクション</td>
+          <td><%= f.text_area :action, placeholder: "これからできること" %></td>
+        </tr>
+        <tr>
+          <td>達成期限</td>
+          <td><%= f.date_field :span, placeholder:"いつまでに叶えたいですか？", class: "form-control datetimepicker-input", id: "span", data: {toggle: "datetimepicker", target: "#span"} %></td>
         </tr>
         <tr>
           <td>tag</td>
           <td><%= f.text_field :tag_name, placeholder:"スペースを入力することで複数のタグを付けることができます。" %></td>
         </tr>
-       
+
+        <tr>
+          <td>参考URL</td>
+          <td><%= f.text_area :url, placeholder: "ここに説明文を記述" %></td>
+        </tr>
+        <tr>
+          <td>その他メモ</td>
+          <td><%= f.text_area :memo, placeholder: "ここに説明文を記述" %></td>
+        </tr>
+
       </tbody>
     </table>
     <%= f.submit "新規登録", class: "btn btn-success my-2" %>
@@ -37,3 +55,4 @@
     <% end %>
 　</div>
 </div>
+

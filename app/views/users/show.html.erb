@@ -1,32 +1,25 @@
 
-<div class="container">
-  <div class="badge badge-light my-4">
-    <h3>マイページ</h3>
+<div class="card">
+  <div class="d-flex flex-column  align-items-center text-align-center py-5 ">
+      <div class="card_header">
+        <h3>マイページ</h3>
+      </div>
+      <div >
+        <%= attachment_image_tag(@user, :user_image, fallback: "noimage.jpg", size:'200x200', class:"rounded-circle border") %>
+      </div>
+      <div>
+        <%= link_to "登録情報を編集する",edit_users_path,class:"btn btn-success"%>
+      </div>
+      <div><%= current_user.name%></div>
+      <div>
+      　<%= link_to "叶えたいこと一覧",wishes_path,class:"btn btn-primary"%>
+      </div>
+      <div>
+      　<%= link_to "叶えられたこと一覧",wishes_dones_path,class:"btn btn-primary"%>
+   　 </div>
+   　<div>
+   　  <%= link_to "叶えられたこと一覧",wishes_dones_path,class:"btn btn-primary"%>
+   　</div>
   </div>
-  <div class="row">
-    <h4 class="col-2">登録情報</h4>
-    <%= link_to "編集する",edit_users_path,class:"btn btn-success"%>
-  </div>
-    <table class="table table-bordered my-3">
-        <tr>
-
-            <!--2021/5/18 Error lasta_name for nil current_customerの設定？ ← ログインしていないから当然？-->
-            <td><%= current_user.name%></td>
-        </tr>
-        <tr>
-            <th>メールアドレス</th>
-            <td><%= current_user.email%></td>
-        </tr>
-    </table>
-
-    <div class="row mt-3">
-    　<h4 class="col-2">wish list</h4>
-    　<%= link_to "一覧を見る",wishes_path,class:"btn btn-primary"%>
-    </div>
-
-    <div class="row mt-2">
-    　<h4 class="col-2">dones list</h4>
-    　<%= link_to "一覧を見る",wishes_dones_path,class:"btn btn-primary"%>
- 　 </div>
 
 </div>
