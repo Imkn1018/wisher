@@ -4,7 +4,9 @@ class Wish < ApplicationRecord
   has_many :tags, through: :wish_tag_relationships
   belongs_to:user, required: true
 
-
+  def self.search(keyword)
+    where(["wish_title like? OR purpose like? OR memo like?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+  end
   attachment :wish_image
   # タグ付機能
   def save_tag(tags,current_user)

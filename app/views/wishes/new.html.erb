@@ -16,7 +16,7 @@
        <tbody>
         <tr>
           <td>タイトル</td>
-          <td><%= f.text_field :wish_title, placeholder: "" %></td>
+          <td><%= f.text_field :wish_title, placeholder: "",class: "form-control"%></ %></td>
         </tr>
          <tr>
           <td>イメージ</td>
@@ -24,28 +24,28 @@
         </tr>
         <tr>
           <td>目的</td>
-          <td><%= f.text_field :purpose, placeholder: "" %></td>
+          <td><%= f.text_field :purpose, placeholder: "" ,class: "form-control"%></td>
         </tr>
         <tr>
           <td>アクション</td>
-          <td><%= f.text_area :action, placeholder: "これからできること" %></td>
+          <td><%= f.text_area :action, placeholder: "これからできること",class: "form-control"%></td>
         </tr>
         <tr>
           <td>達成期限</td>
-          <td><%= f.date_field :span, placeholder:"いつまでに叶えたいですか？", class: "form-control datetimepicker-input", id: "span", data: {toggle: "datetimepicker", target: "#span"} %></td>
+          <td><%= f.date_field :span, class: "form-control datetimepicker-input", id: "span", data: {toggle: "datetimepicker", target: "#span"} %></td>
         </tr>
         <tr>
           <td>tag</td>
-          <td><%= f.text_field :tag_name, placeholder:"スペースを入力することで複数のタグを付けることができます。" %></td>
+          <td><%= f.text_field :tag_name, placeholder:"スペースを入力することで複数のタグを付けることができます。",class: "form-control"%></ %></td>
         </tr>
 
         <tr>
           <td>参考URL</td>
-          <td><%= f.text_area :url, placeholder: "ここに説明文を記述" %></td>
+          <td><%= f.text_area :url, placeholder: "ここに説明文を記述",class: "form-control"%></td>
         </tr>
         <tr>
           <td>その他メモ</td>
-          <td><%= f.text_area :memo, placeholder: "ここに説明文を記述" %></td>
+          <td><%= f.text_area :memo, placeholder: "ここに説明文を記述",class: "form-control"%></td>
         </tr>
 
       </tbody>

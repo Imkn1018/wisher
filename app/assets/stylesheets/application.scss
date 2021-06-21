@@ -21,15 +21,16 @@
 
 body {
   font-size: 1rem;
+  padding-top: 20px;
 
   margin: 0 auto;
-  min-height: 100vh;
+  // min-height: 100vh;
   display: grid;
   grid-template:
     "header header header"
-    ".....  ...... ....." 40px
+    ".....  ...... ....."
     "left center right"
-    ".....  ...... ....." 40px
+    ".....  ...... ....."
     "footer footer footer"
 
 }
@@ -37,11 +38,16 @@ body {
 
 header {
   grid-area: header;
+  position:fixed;
+  top:0;
+  z-index:200;
+  width: 100%;
 }
-nav {
-  grid-area: left;
-}
+// nav {
+//   grid-area: left;
+// }
 main {
+  margin-top: 80px;
   grid-area: center;
 }
 aside {
@@ -60,19 +66,20 @@ footer {
       "right"
       "footer"
   }
+  aside{
+    display:none;
+  }
 }
 
 .card{
   background-color: #fff;
   border-radius: 1rem;
-  box-shadow: 0 0.5em 1em -0.125em
-
-
+  box-shadow: 0 0.5em 1em -0.125em;
 
 }
 
 .card_header {
-align-items: center;
+  align-items: center;
     color: #363636;
     display: flex;
     flex-grow: 1;
@@ -85,4 +92,28 @@ align-items: center;
 
 
   padding:10px;
+}
+.wish_card {
+  width: 320px;
+  max-height: 500px;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.5em 1em -0.125em;
+}
+
+
+@media screen and (max-width: 479px) {
+  /*ウィンドウ幅が最大479pxの場合に適用*/
+  aside {
+    position: fixed;
+    bottom:0;
+    width:100%;
+    ul{
+      display:flex;
+    }
+    li{
+      flex:1;
+    }
+  }
+
 }

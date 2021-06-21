@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   def show
+     @tag_list = current_user.tags.all
+     @wishes = current_user.wishes.all
   end
-  
+
   def edit
     @user = User.find_by(id:current_user.id)
   end
-  
+
   def update
     @user = User.find_by(id:current_user.id)
     @user.update_attributes(user_params)
@@ -19,7 +21,7 @@ class UsersController < ApplicationController
         render :edit
     end
   end
-  
+
   private
   def user_params
       params.require(:user).permit(:name,:user_image_id,:introduction,:email)

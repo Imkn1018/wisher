@@ -40,9 +40,27 @@
       </div>
     </nav>
   </header>
-    <main >
+    <main class="px-5">
+      <div class="search-form">
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :keyword, value: @keyword %>
+          <%= f.submit "検索" %>
+        <% end %>
+
+      </div>
       <%= yield %>
     </main>
+    <aside>
+      <nav>
+        <ul>
+        <li>list1<li>
+        <li>list2<li>
+        <li>list3<li>
+        <li>list4<<li>
+        </ul>
+      </nav>
+      <ul></ul>
+    </aside>
   <footer>
     dddd
   </footer>

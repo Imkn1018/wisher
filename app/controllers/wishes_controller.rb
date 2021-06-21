@@ -4,7 +4,9 @@ class WishesController < ApplicationController
   def new
     @wish = current_user.wishes.new
   end
+  def all
 
+  end
   def index
      user = User.find_by(id: current_user.id)
      @tag_list = user.tags.all
@@ -42,7 +44,7 @@ class WishesController < ApplicationController
 
   def edit
     @wish = Wish.find(params[:id])
-    @tag_list = @wish.tags.pluck(:tag_name).join(nil)
+    @tag_list = @wish.tags.pluck(:tag_name).join("、")
   end
 
   def update
@@ -97,10 +99,17 @@ class WishesController < ApplicationController
        @wish = Wish.find(params[:id])
        @wish_tags = @wish.tags
    end
+
+   def search
+      @wishes = Wish.search(params[:keyword])
+      @keyword = params[:keyword]
+      @tag_list = Tag.all
+      render "index"
+    end
+
       private
 
       def wish_params
         params.require(:wish).permit(:wish_title,:memo,:wish_image,:span,:difficulty,:url)
       end
 end
-  

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :wishes do
     resources :complete_reviews
   end
-
+  get "all" => "wishes#all", as: :all
   get "dones" => "wishes#dones",as: :wishes_dones
   patch "wishes/:id/complete" => "wishes#complete", as: :wishes_complete
   resources :tags
@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 
   # ゲストログイン機能
   post '/homes/guest_sign_in', to: 'homes#guest_sign_in'
+
+  get 'search' => 'wishes#search'
 end
