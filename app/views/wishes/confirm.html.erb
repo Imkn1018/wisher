@@ -11,35 +11,35 @@
  </div>
 </div>
 
-<div class="container">
-  <div class="row mt-5">
-    <div class="col-md-5 mb-5">
-          <%= attachment_image_tag @wish, :wish_image, size:'200x200' %>
-    </div>
-    <div class="col-md-7 mt-2">
-      <h4 class="mt-2"><%= @wish.wish_title %></h4>
-      <div class="mt-3"><%= @wish.memo %></div>
-      <table>
-        <tbody>
-          <% @wish_tags.each do |wish_tag| %>
-          <tr>
-            <td>
-              <%= wish_tag.tag_name %>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+<div class="card p-3">
+  <div>
+      <div class="card_header">
+         <% if @wish.isCompleted == false %>
+            <h4 class="text-secondary">叶えたいこと</h4>
+         <% else %>
+           <h3 class="text-success">叶えられたこと</h3>
+         <% end %>
+      </div>
+       <div class="row mt-2">
+        <div class="col-md-5 mb-5">
+              <%= attachment_image_tag @wish, :wish_image, size:'200x200' %>
+        </div>
+        <div class="col-md-7 mt-2">
+          <h4 class="mt-2"><%= @wish.wish_title %></h4>
+          <div class="mt-3"><%= @wish.memo %></div>
+
+        </div>
+         <table>
+          <tbody>
+            <% @wish_tags.each do |wish_tag| %>
+            <tr>
+              <div class="rounded-pill bg-light p-1 m-2">
+                  <%= link_to wish_tag.tag_name, wishes_path(tag_id: wish_tag.id) ,class:"text-secondary text-center"%>
+              </div>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
     </div>
   </div>
-</div>
 
-<% @wish.complete_reviews.each do |complete_review| %>
-
-  <%= complete_review.review_title %>
-  <%= complete_review.review %>
-   <%= link_to wish_complete_review_path(complete_review.wish_id, complete_review) do %>
-    <%= attachment_image_tag complete_review, :complete_image, size:'200x200' %>
-   <% end %>
-  <%= complete_review.created_at.strftime('%Y/%m/%d') %><%= complete_review.review %>
-<% end %>

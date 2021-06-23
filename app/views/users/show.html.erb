@@ -1,71 +1,112 @@
 
-<div class="card">
-  <div class="d-flex flex-column  align-items-center justify-content-left p-3 ">
-      <div class="card_header">
-        <h3>マイページ</h3>
-      </div>
-      <div >
-        <%= attachment_image_tag(@user, :user_image, fallback: "noimage.jpg", size:'200x200', class:"rounded-circle border") %>
-      </div>
-      <div class="mt-4"><%= current_user.name%></div>
-      <div class="d-flex align-items-center">
-      <div>
-        <%= link_to "登録情報を編集する",edit_users_path,class:"btn btn-success text-center mt-3"%>
-      </div>
+<div class="input-group input-group-md mx-auto mb-4 justify-content-center search-input">
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :keyword, value: @keyword, class:"border-light rounded-pill"%>
+          <%= f.submit "検索" , :class =>"btn btn-outline-info my-2 my-sm-0" do%>
+            <i class="fa fa-search"></i>
+          <% end %>
+        <% end %>
 
-      <div>
-      　<%= link_to "叶えたいこと一覧",wishes_path,class:"btn btn-primary text-center mt-3"%>
       </div>
-      <div>
-      　<%= link_to "叶えられたこと一覧",wishes_dones_path,class:"btn btn-primary text-center mt-3"%>
-   　 </div>
-      </div>
+<!--画像スライダー-->
+<div class="container-fluid box-background">
+    <div class="row　d-flex align-items-bottom">
+        <!--swiper-->
 
+        <div class="col-md-12 ">
+           <div class="swiper-container mx-auto mt-5  justify-content-center py-3">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <% @wishes.last(4).each do |wish| %>
+                      <div class="swiper-slide">
+                        <%= link_to wish_path(wish.id) do %>
+                            <%= attachment_image_tag wish, :wish_image,fallback: 'noimage.jpg', size: '300x300', class: "rounded main-image" %>
+                        <% end %>
+                      </div>
+                    <% end %>
+                </div>
+                <!-- If we need pagination -->
+                <!--<div class="swiper-pagination text-center"></div>-->
+
+                <!-- If we need navigation buttons -->
+                <!--<div class="swiper-button-prev"></div>-->
+                <!--<div class="swiper-button-next"></div>-->
+
+                <!-- If we need scrollbar -->
+            </div>
+        </div>
   </div>
+</div>
+
+<!--グラフ-->
+<div>
 
 </div>
 
+<!--最近追加した叶えたいこと-->
+<div>
+  <div>
+    <div>
+      最近追加した叶えたいこと
+    </div>
+    <div class="row">
+        <% @wishes.where(isCompleted = false).last(4).each do |wish| %>
+            <div class="col-md-2 mt-3 mx-5">
+                <p class="intro-image-wrap">
+                    <%= link_to wish_path(wish.id) do %>
+                        <%= attachment_image_tag wish, :wish_image, fallback: 'noimage.jpg', size: '200x200', class: "intro-image rounded" %>
+                    <% end %>
+                </p>
+                <p><%= wish.wish_title %></p>
 
-<div class="container mt-3 pt-5">
-  <ul class="nav nav-tabs d-flex row p-3" role="tablist">
-    <li class="active pr-3" role="presentation">
-      <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">全てのリスト</a>
-    </li>
-    <li class="pr-3" role="presentation">
-      <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">叶えたいことリスト</a>
-    </li>
-    <li class="pr-3" role="presentation">
-      <a aria-controls="tab_c" data-toggle="tab" href="#tab_c" role="tab">叶えられたことリスト</a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Dropdown link
-      </a>
-      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab_a" role="tabpanel">
-      <p>
-        <%= render 'tags/index', tag_list: @tag_list %>
-        <%= render 'wishes/index', wishes: @wishes, tag: @tag %>
-      </p>
+            </div>
+        <% end %>
     </div>
-    <div class="tab-pane" id="tab_b" role="tabpanel">
-      <p>
-        <%= render 'tags/index', tag_list: @tag_list %>
-        <%= render 'wishes/index', wishes: @wishes.where(isCompleted: false), tag: @tag %>
-      </p>
-    </div>
-    <div class="tab-pane" id="tab_c" role="tabpanel">
-      <p>
-         <%= render 'tags/index', tag_list: @tag_list %>
-        <%= render 'wishes/index', wishes: @wishes.where(isCompleted: true), tag: @tag %>
-      </p>
-    </div>
+    <div>叶えたいこと一覧へ</div>
   </div>
 </div>
+
+<!--最近叶えられたこと-->
+
+  <div>
+
+  </div>
+
+<script>
+  const swiper =  new Swiper('.swiper-container', {
+  // Optional parameters
+  slidesPerView: 3, // 何枚のスライドを表示するか
+  spaceBetween: 20, // スライド間の余白サイズ(ピクセル)
+  direction: 'horizontal',
+  grabCursor: true,
+  centeredSlides: true,
+
+  loop: true,
+  effect: "coverflow",
+    autoplay: {
+      delay: 3000, // スライドが切り替わるまでの表示時間(ミリ秒)
+      stopOnLast: false, // 最後のスライドまで表示されたら自動再生を中止するか
+      disableOnInteraction: false // ユーザーのスワイプ操作を検出したら自動再生を中止するか
+    },
+    coverflowEffect:{
+      slideShadows: false,
+      shadow: true,
+
+    },
+  // If we need pagination
+  pagination: {
+    el: '.swiper-pagination',
+  },
+
+  // Navigation arrows
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+
+  // And if we need scrollbar
+
+})
+
+</script>

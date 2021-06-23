@@ -1,28 +1,25 @@
 <div class="card">
   <div class="d-flex flex-column  align-items-center text-align-center py-5 ">
-
+     <% if flash[:failed] %>
+          <p class="alert alert-danger">
+            <%= flash[:failed] %>
+          </p>
+      <% end %>
       <div class="card_header">
          叶えたいことを編集する
       </div>
 
-      <div>
+    <div>
       <%= form_with model:@wish, local:true do |f| %>
        <table class="table mx-auto table-borderless">
-       <% if @wish.errors.any? %>
-          <span class="text-danger"><%= @wish.errors.count %>件のエラーが発生しました</span>
-          <ul class="text-danger">
-          <% @wish.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-       <% end %>
+
        <tbody>
         <div class="text-center py-3">
           <%= attachment_image_tag(@wish, :wish_image, fallback: "noimage.jpg", size:'200x200', class:"rounded-circle border") %>
         </div>
         <tr>
           <td>タイトル</td>
-          <td><%= f.text_field :wish_title, placeholder: "",class: "form-control"%></ %></td>
+          <td><%= f.text_field :wish_title, placeholder: "",class: "form-control"%></td>
         </tr>
          <tr>
           <td>イメージ</td>
@@ -42,7 +39,6 @@
         </tr>
         <tr>
           <td>tag</td>
-          <td><%= f.text_field :tag_name, placeholder:"スペースを入力することで複数のタグを付けることができます。",class: "form-control"%></td>
           <td><%= f.text_field :tag_ids,value: @tag_list,placeholder: "タグをつける。複数つけるには','で区切ってください",class:"form-control" %></td>
         </tr>
 
@@ -57,7 +53,7 @@
 
       </tbody>
     </table>
-      <%= f.submit "変更を保存", class: "btn btn-success my-2" %>
+      <%= f.submit "変更を保存", class: "btn btn-success my-2 justify-content-center py-2" %>
     <% end  %>
     </div>
       <% if @wish.isCompleted == false  %>

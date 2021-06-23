@@ -1,25 +1,23 @@
 class CompleteReviewsController < ApplicationController
-  protect_from_forgery :except => [:create,:update,:destroy]
+  protect_from_forgery except: %i[create update destroy]
   def new
     @wish = Wish.find(params[:wish_id])
     @review = CompleteReview.new
   end
+
   def index
-     @wish = Wish.find(params[:wish_id])
+    @wish = Wish.find(params[:wish_id])
     reviews = @wish.complete_reviews
     render json: reviews
   end
+
   def create
     wish = Wish.find(params[:wish_id])
     @review = current_user.complete_reviews.new(review_params)
     @review.wish_id = wish.id
     @review.save
-    if @review = @review[0]
-      redirect_to wish_path(wish)
-    end
-    if wish.isCompleted = false
-      wish.update(isCompleted => true)
-    end
+    redirect_to wish_path(wish) if @review = @review[0]
+    wish.update(isCompleted => true) if wish.isCompleted = false
   end
 
   def show
@@ -33,20 +31,20 @@ class CompleteReviewsController < ApplicationController
   end
 
   def update
-     @wish = Wish.find(params[:wish_id])
-     review = CompleteReview.find_by(id: params[:id], wish_id: params[:wish_id])
-     if review.update(review_params)
-        render json: review
-     else
-       render :edit
-     end
+    @wish = Wish.find(params[:wish_id])
+    review = CompleteReview.find_by(id: params[:id], wish_id: params[:wish_id])
+    if review.update(review_params)
+      render json: review
+    else
+      render :edit
+    end
   end
 
-  def destroy
-  end
+  def destroy; end
+
   private
 
   def review_params
-    params.require(:complete_review).permit(:review_title,:review,:complete_image,:satisfy)
+    params.require(:complete_review).permit(:review_title, :review, :complete_image, :satisfy)
   end
 end

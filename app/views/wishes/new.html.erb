@@ -1,18 +1,16 @@
 <div class="card">
   <div class="d-flex flex-column  align-items-center text-align-center py-5 ">
+      <% if flash[:failed] %>
+          <p class="alert alert-danger">
+            <%= flash[:failed] %>
+          </p>
+      <% end %>
       <div class="card_header">
         叶えたいことを追加する
       </div>
     <%= form_with model:@wish, local:true do |f| %>
      <table class="table mx-auto table-borderless">
-       <% if @wish.errors.any? %>
-          <span class="text-danger"><%= @wish.errors.count %>件のエラーが発生しました</span>
-          <ul class="text-danger">
-          <% @wish.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-        <% end %>
+
        <tbody>
         <tr>
           <td>タイトル</td>
@@ -36,7 +34,7 @@
         </tr>
         <tr>
           <td>重要度</td>
-          <td><%= f.date_field :span, class: "form-control datetimepicker-input", id: "span", data: {toggle: "datetimepicker", target: "#span"} %></td>
+          <td><%= react_component("Molecules/StarRating",{value: @wish.importance} ) %></td>
         </tr>
         <tr>
           <td>tag</td>

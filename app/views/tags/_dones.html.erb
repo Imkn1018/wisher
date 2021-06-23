@@ -1,12 +1,12 @@
+<%= link_to tags_path do %>
+  <h5>タグ一覧</h5>
+<% end %>
+<div class="d-flex row">
 <% @tag_list.each do |list| %>
-
+  <div class="rounded-pill bg-light p-3 m-2 tag_list">
     <% if list.wishes.where(isCompleted:true).count != 0  %>
        <p><%=link_to list.tag_name,wishes_path(tag_id:list.id)%><%= list.wishes.where(isCompleted:true).count %></p>
     <% end %>
-
+  </div>
 <% end  %>
-
-
-<% if params[:tag_id]  %>
-  <h1><%= @tag.tag_name %>のタグ</h1>
-<% end  %>
+</div>

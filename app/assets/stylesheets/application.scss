@@ -43,12 +43,13 @@ header {
   z-index:200;
   width: 100%;
 }
-// nav {
-//   grid-area: left;
-// }
+.user-info {
+  grid-area: left;
+}
 main {
   margin-top: 80px;
   grid-area: center;
+
 }
 aside {
   grid-area: right;

@@ -12,11 +12,12 @@
     "framer-motion": "^4",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
+    "react_ujs": "^2.6.1",
+    "react-awesome-stars-rating": "^0.4.0",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-toastify": "^7.0.4",
-    "react_ujs": "^2.6.1",
     "styled-components": "^5.3.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"

@@ -44,7 +44,7 @@ function ReviewIndex(props) {
     axios.post(`/wishes/${wish.id}/complete_reviews`, {
       review_title: reviewTitle,
       review: review,
-      complete_image_id: imageUrl,
+      complete_image: imageUrl,
     });
 
     const newReviews = [
@@ -54,7 +54,7 @@ function ReviewIndex(props) {
         wish_id: wish.id,
         review_title: reviewTitle,
         review: review,
-        complete_image_id: imageUrl,
+        complete_image: imageUrl,
       },
     ];
     setReviews(newReviews);
@@ -103,7 +103,9 @@ function ReviewIndex(props) {
 
   return (
     <ChakraProvider>
-      <Wrap p={{ base: 4, md: 10 }} justify="center">
+     <Text>達成レビューを記録する</Text>
+     <Button onClick={onOpenCreate}>Create</Button>
+      <Wrap p={{ base: 5, md: 10 }} justify="center">
         {reviews &&
           reviews.map((review, id) => (
             <WrapItem key={id}>
@@ -138,13 +140,14 @@ function ReviewIndex(props) {
             </WrapItem>
           ))}
       </Wrap>
-      <button onClick={onOpenCreate}>Create</button>
+
       {isCreateModalOpen === false && (
         <Modal
           isOpen={isOpen}
           onClose={onClose}
           autoFocus={false}
           motionPreset="scale"
+          isCentered={true}
         >
           <ModalOverlay>
             <ModalContent pb={2}>
@@ -183,9 +186,11 @@ function ReviewIndex(props) {
           onClose={onClose}
           autoFocus={false}
           motionPreset="scale"
+          isCentered={true}
+          p={3}
         >
           <ModalOverlay>
-            <ModalContent pb={2}>
+            <ModalContent  p={7} py="auto">
               <ModalHeader>Create Review</ModalHeader>
               <ModalCloseButton
                 onClick={() => {
@@ -229,7 +234,7 @@ function ReviewIndex(props) {
 
               <ModalFooter>
                 {reviewTitle ? (
-                  <Button onClick={postReview}></Button>
+                  <Button onClick={postReview}>達成レビューを記録する</Button>
                 ) : (
                   <Text>タイトルは必須項目となります</Text>
                 )}

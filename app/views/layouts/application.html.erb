@@ -16,9 +16,6 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-info">
         <div class="container">
-          <!-- 管理者側と顧客側で遷移先を変える　-->
-
-
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -31,7 +28,7 @@
                 <li class="mr-5 pt-2 text-white">ようこそ、<span class="mr-1"><%= current_user.name %></span>さん！</li>
                 <li><%= link_to "マイページ", users_path, class: "btn btn-outline-white nav-link text-white m-2" %></li>
                 <li><%= link_to "新規作成", new_wish_path, class: "btn btn-outline-white nav-link text-white m-2" %></li>
-                <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-white nav-link text-white m-2" %></li>
+                <li><%= link_to "一覧画面", wishes_path,  class: "btn btn-outline-white nav-link text-white m-2" %></li>
                 <!--ログイン前-->
               <% else %>
               <li><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-primary nav-link text-white m-2" %></li>
@@ -44,15 +41,7 @@
     </nav>
   </header>
     <main class="px-5">
-      <div class="input-group input-group-md mx-auto mb-4 justify-content-center search-input">
-        <%= form_with url: search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :keyword, value: @keyword, class:"border-light rounded-pill"%>
-          <%= f.submit "検索" , :class =>"btn btn-outline-info my-2 my-sm-0" do%>
-            <i class="fa fa-search"></i>
-          <% end %>
-        <% end %>
-
-      </div>
+      
       <%= yield %>
     </main>
     <aside>
@@ -67,11 +56,11 @@
       <ul></ul>
     </aside>
   <footer>
-    dddd
+
   </footer>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
   </body>
 </html>
