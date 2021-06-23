@@ -6,7 +6,7 @@ index
 
 <div class="d-flex flex-wrap justify-content-around">
 <% wishes.each do |wish| %>
-  <div class="wish_card p-4 m-4">
+  <div class="wish_card p-4 m-4 w-sm">
       <%= link_to wish_path(wish.id) do %>
           <div class="d-flex flex-column  align-items-center text-align-center pt-2">
             <div><%= attachment_image_tag(wish, :wish_image , fallback: "noimage.jpg",size:'200x200', class:"rounded-circle") %></div>

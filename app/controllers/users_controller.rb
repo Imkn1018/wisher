@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+
+  def top
+    @wishes = current_user.wishes.all
+    
+  end
+
   def show
      @tag_list = current_user.tags.all
      @wishes = current_user.wishes.all

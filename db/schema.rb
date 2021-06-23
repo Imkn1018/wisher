@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_071019) do
+ActiveRecord::Schema.define(version: 2021_06_23_012452) do
 
   create_table "complete_reviews", force: :cascade do |t|
     t.integer "user_id"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_071019) do
     t.string "review_title"
     t.text "review"
     t.integer "satisfy"
-    t.string "complete_image_id"
+    t.string "complete_image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_071019) do
     t.text "memo"
     t.string "wish_image_id"
     t.datetime "span"
-    t.integer "difficutly"
+    t.float "importance", default: 1.0
     t.boolean "isCompleted", default: false, null: false
     t.string "url"
     t.datetime "created_at", null: false

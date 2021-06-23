@@ -1,5 +1,5 @@
 
-<div class="card p-3 ">
+<div class="card p-3  ">
   <div>
       <div class="card_header">
          <% if @wish.isCompleted == false %>
@@ -41,29 +41,9 @@
 </div>
 <!--コンポーネント-->
 
-
-<%  if @wish.isCompleted == true  %>
-<p>コメント件数：<%= @wish.complete_reviews.count %></p>
-<% @wish.complete_reviews.each do |complete_review| %>
-
-  <%= complete_review.review_title %>
-  <%= complete_review.review %>
-   <%= link_to wish_complete_review_path(complete_review.wish_id, complete_review) do %>
-    <%= attachment_image_tag complete_review, :complete_image, size:'200x200' %>
-   <% end %>
-  <%= complete_review.created_at.strftime('%Y/%m/%d') %><%= complete_review.review %>
-<% end %>
-</div>
-<div class="new-comment">
-<%= form_with(model:[@wish, @review], local: true) do |f| %>
-  <%= f.text_area :review_title, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.text_area :review, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.attachment_field :complete_image %>
-  <%= f.submit "送信する" %>
-<% end %>
-</div>
-<% end  %>
-
 <% if @wish.isCompleted == true  %>
   <%= link_to "叶えたいことに戻す", wishes_confirm_path(@wish) %>
 <% end  %>
+<%  if @wish.isCompleted == true  %>
+<%= react_component("Organisms/Index/ReviewIndex",{wish:@wish, completeReviews: @reviews} ,class:"px-5") %>
+<% end %>

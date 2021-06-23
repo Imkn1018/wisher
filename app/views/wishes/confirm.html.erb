@@ -1,11 +1,11 @@
 <div class="container pt-4">
     <h1 class="text-center mt-4">叶えたいことに戻しますか？</h1>
-    <p class="text-center my-3">戻すと今までのレビューが見れなくなります<br>
+    <p class="text-center my-3">戻すと今までの達成レビューが見れなくなります<br>
     <br>
     叶えたいことに戻す場合は、「叶えたいことに戻す」をクリックしてください。</p>
  <div class="row">
      <div class="mx-auto">
-    <%= link_to "このままにする",wishes_path,class:"btn btn-primary"%>
+    <%= link_to "このままにする",:back,class:"btn btn-primary"%>
     <%= link_to "叶えたいことに戻す", wishes_back_path(@wish), method: :patch,class:"btn btn-danger ml-4"%>
     </div>
  </div>

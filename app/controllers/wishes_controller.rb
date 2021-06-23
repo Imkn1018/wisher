@@ -39,6 +39,7 @@ class WishesController < ApplicationController
   def show
     @wish = Wish.find(params[:id])
     @wish_tags = @wish.tags
+    @reviews = @wish.complete_reviews
     @review = CompleteReview.new
   end
 
@@ -68,7 +69,7 @@ class WishesController < ApplicationController
     def complete
       @wish = Wish.find(params[:id])
       @wish.update(isCompleted: true)
-      redirect_to new_wish_complete_review_path(@wish)
+      redirect_to wish_path(@wish)
     end
     # 叶えたことリスト一覧表示
    def dones
@@ -91,7 +92,7 @@ class WishesController < ApplicationController
        @wish.update(isCompleted: false)
     #   達成レビューを全て削除する
        @wish.complete_reviews.destroy_all
-      redirect_to wishes_path
+      redirect_to wish_path
    end
 
 # 叶えたことを叶えたいことに戻す前の確認画面の表示（達成レビューも全て削除するため）

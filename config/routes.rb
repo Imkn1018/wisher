@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :wishes do
     resources :complete_reviews
   end
+  get "users/top" => "users#top",as: :users_top
   get "all" => "wishes#all", as: :all
   get "dones" => "wishes#dones",as: :wishes_dones
   patch "wishes/:id/complete" => "wishes#complete", as: :wishes_complete
