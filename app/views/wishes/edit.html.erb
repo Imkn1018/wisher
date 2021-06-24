@@ -5,10 +5,13 @@
             <%= flash[:failed] %>
           </p>
       <% end %>
-      <div class="card_header">
-         叶えたいことを編集する
-      </div>
+      <div class="d-flex spaceBetween">
+        <div>
+           叶えたいことを編集する
+        </div>
 
+
+      </div>
     <div>
       <%= form_with model:@wish, local:true do |f| %>
        <table class="table mx-auto table-borderless">
@@ -35,11 +38,15 @@
         </tr>
         <tr>
           <td>達成期限</td>
-          <td><%= f.date_field :span, class: "form-control datetimepicker-input", id: "span", data: {toggle: "datetimepicker", target: "#span"} %></td>
+          <td><%= f.date_field :span, class: "form-controlt" %></td>
+        </tr>
+        <tr>
+            <td>重要度</td>
+            <td id="rating-form"><%= f.hidden_field :importance,:value => 'score'%></td>
         </tr>
         <tr>
           <td>tag</td>
-          <td><%= f.text_field :tag_ids,value: @tag_list,placeholder: "タグをつける。複数つけるには','で区切ってください",class:"form-control" %></td>
+          <td><%= f.text_field :tag_name ,value: @tag_list,class:"form-control" %></td>
         </tr>
 
         <tr>
@@ -62,4 +69,26 @@
       <%= link_to "叶えたいことに戻す", wishes_confirm_path(@wish.id) %>
       <% end  %>
   </div>
+
+   <div id="star-comf-<%= @wish.id %>"></div>
+
 </div>
+
+<script>
+    $('#rating-form').raty({
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        scoreName: 'wish[importance]',
+        score: <%= @wish.importance %>,
+
+    });
+</script>
+
+<script>
+  $('#star-comf-<%= @wish.id %>').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    readOnly: true,
+    score: <%= @wish.importance %>,
+  });
+</script>

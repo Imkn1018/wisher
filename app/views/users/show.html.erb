@@ -40,18 +40,50 @@
 </div>
 
 <!--グラフ-->
-<div>
 
+<div>
+  あなたの叶えたいこと
+  <div class="mt-2 pt-3">
+    <%= timeline @wishes.where(isCompleted:false).map{|wish|
+
+      [wish.wish_title, wish.created_at, wish.span]
+
+    } ,colors: ["#17a2b8"],timeline: { colorByRowLabel: true },class:"flex-no-wrap"%>
+  </div>
 </div>
+
 
 <!--最近追加した叶えたいこと-->
 <div>
   <div>
     <div>
-      最近追加した叶えたいこと
+      最近追加したもの
     </div>
     <div class="row">
-        <% @wishes.where(isCompleted = false).last(4).each do |wish| %>
+        <% @wishes.where(isCompleted:false).last(4).each do |wish| %>
+            <div class="col-md-2 mt-3 mx-5">
+                <p class="intro-image-wrap">
+                    <%= link_to wish_path(wish.id) do %>
+                        <%= attachment_image_tag wish, :wish_image, fallback: 'noimage.jpg', size: '200x200', class: "intro-image rounded" %>
+                    <% end %>
+                </p>
+                <p><%= wish.wish_title %></p>
+
+            </div>
+        <% end %>
+    </div>
+    <div><%= link_to "叶えたいこと一覧へ", wishes_path %></div>
+  </div>
+</div>
+
+<!--最近叶えられたこと-->
+<div>
+  <div>
+    <div>
+      最近追加したもの
+    </div>
+    <div class="row">
+        <% @wishes.where(isCompleted:true).last(4).each do |wish| %>
             <div class="col-md-2 mt-3 mx-5">
                 <p class="intro-image-wrap">
                     <%= link_to wish_path(wish.id) do %>
@@ -66,12 +98,6 @@
     <div>叶えたいこと一覧へ</div>
   </div>
 </div>
-
-<!--最近叶えられたこと-->
-
-  <div>
-
-  </div>
 
 <script>
   const swiper =  new Swiper('.swiper-container', {

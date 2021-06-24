@@ -1,3 +1,4 @@
+
 <div class="card">
   <div class="d-flex flex-column  align-items-center text-align-center py-5 ">
       <% if flash[:failed] %>
@@ -30,11 +31,13 @@
         </tr>
         <tr>
           <td>達成期限</td>
-          <td><%= f.date_field :span, class: "form-control datetimepicker-input", id: "span", data: {toggle: "datetimepicker", target: "#span"} %></td>
+          <td><%= f.date_field :span, class: "form-control ", id: "span" %></td>
         </tr>
         <tr>
-          <td>重要度</td>
-          <td><%= react_component("Molecules/StarRating",{value: @wish.importance} ) %></td>
+
+            <td>重要度</td>
+            <td id="rating-form"><%= f.hidden_field :importance, :value => 'score'%></td>
+          
         </tr>
         <tr>
           <td>tag</td>
@@ -57,4 +60,12 @@
     <% end %>
 　</div>
 </div>
+
+<script>
+    $('#rating-form').raty({
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        scoreName: 'wish[importance]'
+    });
+</script>
 

@@ -10,17 +10,20 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 
 //= require_tree .
 //= require moment
 //= require moment/ja.js
+
 //= require tempusdominus-bootstrap-4.js
 
+//= require jquery.raty.js
 
-const ready = function () {
-    ('.datepicker').datetimepicker({
-      format: 'YYYY-MM-DD HH:mm:ss'
-    });
-    };
+//= require chartkick
+//= require Chart.bundle
+
+

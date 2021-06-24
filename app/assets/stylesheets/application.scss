@@ -17,6 +17,7 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
 @import "tempusdominus-bootstrap-4.css";
 
 body {
@@ -34,7 +35,6 @@ body {
     "footer footer footer"
 
 }
-
 
 header {
   grid-area: header;
@@ -120,7 +120,7 @@ footer {
 }
 
 .swiper-container {
-  width: 500px;
+  width: 800px;
   height: 400px;
   margin:  0 auto;
   // padding-top: 50px;

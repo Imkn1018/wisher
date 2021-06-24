@@ -1,11 +1,11 @@
 <%= link_to tags_path do %>
-  <h5>タグ一覧</h5>
+  <h5 class="text-decoration-none">タグ一覧</h5>
 <% end %>
-<div class="d-flex row">
+<div class="d-flex row mt-2 pt-3">
 <% @tag_list.each do |list| %>
-  <div class="rounded-pill bg-light p-3 m-2 tag_list">
+  <div class="tag_list">
     <% if list.wishes.where(isCompleted:true).count != 0  %>
-       <p><%=link_to list.tag_name,wishes_path(tag_id:list.id)%><%= list.wishes.where(isCompleted:true).count %></p>
+       <%=link_to "#{list.tag_name} #{list.wishes.where(isCompleted:true).count}",wishes_path(tag_id:list.id),class:"text-decoration-none rounded-pill  bg-light p-3 m-2 text-secondary"%>
     <% end %>
   </div>
 <% end  %>

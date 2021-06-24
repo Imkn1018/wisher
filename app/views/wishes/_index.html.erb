@@ -1,14 +1,39 @@
-index
 
+<!--タグから来た場合、なんのタグなのかを明確にする-->
 <% if params[:tag_id]  %>
-  <h1><%= tag.tag_name %>のタグ</h1>
+  <h1 class="text-info"><%= tag.tag_name %>のタグ</h1>
+  <!--通常の表示に戻る-->
+  <%= link_to "一覧画面へ戻る",wishes_paths %>
 <% end  %>
 
 <div class="d-flex flex-wrap justify-content-around">
 <% wishes.each do |wish| %>
-  <div class="wish_card p-4 m-4 w-sm">
+  <div class="wish_card p-4 m-2 w-sm text-decoration-none">
       <%= link_to wish_path(wish.id) do %>
-          <div class="d-flex flex-column  align-items-center text-align-center pt-2">
+
+          <div class="d-flex justify-content-between">
+
+            <div>
+              <% if wish.isCompleted == false %>
+                <h5 class="text-secondary">叶えたいこと</h5>
+              <% else %>
+                <h5 class="text-success">達成！</h5>
+              <% end %>
+            </div>
+            <div id="star-rate-<%= wish.id %>"></div>
+            <!--スター表示用-->
+            <script>
+              $('#star-rate-<%= wish.id %>').raty({
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                readOnly: true,
+                score: <%= wish.importance %>
+              });
+            </script>
+
+          </div>
+
+          <div class="d-flex flex-column  align-items-center text-align-center pt-2 mt-2">
             <div><%= attachment_image_tag(wish, :wish_image , fallback: "noimage.jpg",size:'200x200', class:"rounded-circle") %></div>
             <div class="pt-3 text-center text-info"><%= wish.wish_title %></div>
             <% if wish.span %>
@@ -26,3 +51,5 @@ index
     </div>
 <% end %>
 </div>
+
+

@@ -29,14 +29,14 @@
 </div>
 
 <div class="container mt-3 pt-5">
-  <ul class="nav nav-tabs d-flex row p-3" role="tablist">
-    <li class="active pr-3" role="presentation">
-      <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">全てのリスト</a>
+  <ul class="nav nav-tabs  p-3" >
+    <li class=" nav-item nav-link pr-3" role="presentation">
+      <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab" class="text-decoration-none">全てのリスト</a>
     </li>
-    <li class="pr-3" role="presentation">
+    <li class="nav-item nav-link pr-3" role="presentation">
       <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">叶えたいことリスト</a>
     </li>
-    <li class="pr-3" role="presentation">
+    <li class="nav-item nav-link pr-3" role="presentation">
       <a aria-controls="tab_c" data-toggle="tab" href="#tab_c" role="tab">叶えられたことリスト</a>
     </li>
     <!--<li class="nav-item dropdown">-->
@@ -51,19 +51,19 @@
     <!--</li>-->
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="tab_a" role="tabpanel">
+    <div class="tab-pane in active" id="tab_a" role="tabpanel">
       <p>
         <%= render 'tags/all', tag_list: @tag_list %>
         <%= render 'wishes/index', wishes: @wishes, tag: @tag %>
       </p>
     </div>
-    <div class="tab-pane" id="tab_b" role="tabpanel">
+    <div class="tab-pane fade" id="tab_b" role="tabpanel">
       <p>
         <%= render 'tags/index', tag_list: @tag_list %>
         <%= render 'wishes/index', wishes: @wishes.where(isCompleted: false), tag: @tag %>
       </p>
     </div>
-    <div class="tab-pane" id="tab_c" role="tabpanel">
+    <div class="tab-pane fade" id="tab_c" role="tabpanel">
       <p>
          <%= render 'tags/dones', tag_list: @tag_list %>
         <%= render 'wishes/index', wishes: @wishes.where(isCompleted: true), tag: @tag %>
