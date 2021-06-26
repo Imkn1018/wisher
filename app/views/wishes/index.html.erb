@@ -1,73 +1,75 @@
-<div class="input-group input-group-md mx-auto mb-4 justify-content-center search-input">
-        <%= form_with url: search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :keyword, value: @keyword, class:"border-light rounded-pill"%>
-          <%= f.submit "検索" , :class =>"btn btn-outline-info my-2 my-sm-0" do%>
-            <i class="fa fa-search"></i>
-          <% end %>
+<div class="input-group input-group-md mx-auto my-4 justify-content-center search-input">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: @keyword, class:"border-light rounded-pill"%>
+      <%= f.submit "検索" , :class =>"btn btn-outline-info my-2 my-sm-0" do%>
+        <i class="fa fa-search"></i>
+      <% end %>
+    <% end %>
+ </div>
+
+ <div class="d-flex flex-column mx-2 px-2">
+  <!--ユーザー情報-->
+  <div class="card user-info mx-auto mb-4 pb-3">
+    <div class="d-flex flex-column  align-items-center justify-content-left p-3 ">
+
+        <div >
+          <%= attachment_image_tag(@user, :user_image, fallback: "noimage.jpg", size:'200x200', class:"rounded-circle border") %>
+        </div>
+        <div class="mt-4"><%= current_user.name%></div>
+        <div class="d-flex align-items-center">
+        <div>
+          <%= link_to "登録情報を編集する",edit_users_path,class:"btn btn-success text-center mt-3"%>
+        </div>
+        </div>
+    </div>
+  </div>
+  <!--一覧-->
+  <div class="container mx-auto px-3">
+      <ul class="nav nav-tabs nav-fill">
+      <li class="nav-item">
+        <a class="nav-link active text-secondary" data-toggle="tab" href="#tab_a">全てのリスト</a>
+      </li>
+      <li class="nav-item">
+        <a aria-controls="tab_a" data-toggle="tab" class="nav-link text-secondary" href="#tab_b">叶えたいことリスト</a>
+      </li>
+      <li class="nav-item">
+        <a aria-controls="tab_b"  data-toggle="tab" class="nav-link text-secondary" href="#tab_c">叶えられたことリスト</a>
+      </li>
+     </ul>
+     <!--部分テンプレートしようして一覧画面を表示させる-->
+    <div class="tab-content">
+      <div class="tab-pane in active" id="tab_a" role="tabpanel">
+        <% if @wishes.any? %>
+          <div class="mt-2 pt-2"><%= render 'tags/all', tag_list: @tag_list %></div>
+          <div class="mt-2 pt-2"><%= render 'wishes/index', wishes: @wishes, tag: @tag %></div>
+        <% else %>
+         <div class="mt-2 pt-2"><%= render "wishes/none_wish_text" %></div>
         <% end %>
-
       </div>
-<div class="card user-info">
-  <div class="d-flex flex-column  align-items-center justify-content-left p-3 ">
-      <div class="card_header">
-        <h3>マイページ</h3>
+      <div class="tab-pane fade" id="tab_b" role="tabpanel">
+        <% if @wishes.where(isCompleted: false).any? %>
+          <div class="mt-2 pt-2"><%= render 'tags/index', tag_list: @tag_list %></div>
+          <div class="mt-2 pt-2"><%= render 'wishes/index', wishes: @wishes.where(isCompleted: false), tag: @tag %></div>
+        <% else %>
+          <div class="mt-2 pt-2"><%= render "wishes/none_wish_text" %></div>
+        <% end %>
       </div>
-      <div >
-        <%= attachment_image_tag(@user, :user_image, fallback: "noimage.jpg", size:'200x200', class:"rounded-circle border") %>
+      <div class="tab-pane fade" id="tab_c" role="tabpanel">
+        <% if @wishes.where(isCompleted: true).any? %>
+          <div class="mt-2 pt-2"><%= render 'tags/dones', tag_list: @tag_list %></div>
+          <div class="mt-2 pt-2"><%= render 'wishes/index', wishes: @wishes.where(isCompleted: true), tag: @tag %></div>
+        <% else %>
+
+        <% end %>
       </div>
-      <div class="mt-4"><%= current_user.name%></div>
-      <div class="d-flex align-items-center">
-      <div>
-        <%= link_to "登録情報を編集する",edit_users_path,class:"btn btn-success text-center mt-3"%>
-      </div>
-
-
-      </div>
-
-  </div>
-
-</div>
-
-<div class="container mt-3 pt-5">
-  <ul class="nav nav-tabs  p-3" >
-    <li class=" nav-item nav-link pr-3" role="presentation">
-      <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab" class="text-decoration-none">全てのリスト</a>
-    </li>
-    <li class="nav-item nav-link pr-3" role="presentation">
-      <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">叶えたいことリスト</a>
-    </li>
-    <li class="nav-item nav-link pr-3" role="presentation">
-      <a aria-controls="tab_c" data-toggle="tab" href="#tab_c" role="tab">叶えられたことリスト</a>
-    </li>
-    <!--<li class="nav-item dropdown">-->
-    <!--  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-    <!--    Dropdown link-->
-    <!--  </a>-->
-    <!--  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
-    <!--    <li><a class="dropdown-item" href="#">Action</a></li>-->
-    <!--    <li><a class="dropdown-item" href="#">Another action</a></li>-->
-    <!--    <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-    <!--  </ul>-->
-    <!--</li>-->
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane in active" id="tab_a" role="tabpanel">
-      <p>
-        <%= render 'tags/all', tag_list: @tag_list %>
-        <%= render 'wishes/index', wishes: @wishes, tag: @tag %>
-      </p>
-    </div>
-    <div class="tab-pane fade" id="tab_b" role="tabpanel">
-      <p>
-        <%= render 'tags/index', tag_list: @tag_list %>
-        <%= render 'wishes/index', wishes: @wishes.where(isCompleted: false), tag: @tag %>
-      </p>
-    </div>
-    <div class="tab-pane fade" id="tab_c" role="tabpanel">
-      <p>
-         <%= render 'tags/dones', tag_list: @tag_list %>
-        <%= render 'wishes/index', wishes: @wishes.where(isCompleted: true), tag: @tag %>
-      </p>
     </div>
   </div>
+  <script>
+    $('.star-rate').raty({
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      readOnly: true,
+
+    });
+  </script>
 </div>

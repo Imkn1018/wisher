@@ -30,7 +30,7 @@ ja:
       user: ユーザ
   devise:
     confirmations:
-      confirmed: アカウントを登録しました。
+      confirmed: アカウントを登録しました! まずは、新規登録ボタンより叶えたいことを追加しましょう！
       new:
         resend_confirmation_instructions: アカウント確認メール再送
       send_instructions: アカウントの有効化について数分以内にメールでご連絡します。

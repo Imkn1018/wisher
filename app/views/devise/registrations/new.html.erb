@@ -13,9 +13,9 @@
     <%= f.text_field :name, autofocus: true, required: true, class:"form-control" %>
   </div>
 
-  <div class="field my-2">
-    <%= f.label :introduction %><br />
-    <%= f.text_field :introduction, autofocus: true, class:"form-control" %>
+  <div>
+    <td>プロフィール画像</td>
+    <td><%= f.attachment_field :user_image %></td>
   </div>
 
   <div class="field my-2">

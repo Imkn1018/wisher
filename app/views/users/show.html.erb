@@ -1,104 +1,143 @@
 
 <div class="input-group input-group-md mx-auto mb-4 justify-content-center search-input">
-        <%= form_with url: search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :keyword, value: @keyword, class:"border-light rounded-pill"%>
-          <%= f.submit "検索" , :class =>"btn btn-outline-info my-2 my-sm-0" do%>
-            <i class="fa fa-search"></i>
-          <% end %>
-        <% end %>
-
-      </div>
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, value: @keyword, class:"border-light rounded-pill"%>
+      <%= f.submit "検索" , :class =>"btn btn-outline-info my-2 my-sm-0" do%>
+        <i class="fa fa-search"></i>
+      <% end %>
+    <% end %>
+</div>
+<% if @wishes.any?  %>
 <!--画像スライダー-->
-<div class="container-fluid box-background">
-    <div class="row　d-flex align-items-bottom">
-        <!--swiper-->
-
-        <div class="col-md-12 ">
-           <div class="swiper-container mx-auto mt-5  justify-content-center py-3">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <% @wishes.last(4).each do |wish| %>
-                      <div class="swiper-slide">
-                        <%= link_to wish_path(wish.id) do %>
-                            <%= attachment_image_tag wish, :wish_image,fallback: 'noimage.jpg', size: '300x300', class: "rounded main-image" %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                </div>
-                <!-- If we need pagination -->
-                <!--<div class="swiper-pagination text-center"></div>-->
-
-                <!-- If we need navigation buttons -->
-                <!--<div class="swiper-button-prev"></div>-->
-                <!--<div class="swiper-button-next"></div>-->
-
-                <!-- If we need scrollbar -->
-            </div>
-        </div>
+<div class="container mx-auto align-items-center mx-4">
+   <div>
+      <h2 class="text-secondary"><%= @user.name %>'s wish</h2>
+    </div>
+  <div class="d-flex justify-content-center mx-auto border-top flex-wrap">
+      <div class="　d-flex flex-wrap align-items-bottom">
+          <!--swiper-->
+          <div class="col-md-12 ">
+             <div class="swiper-container mx-auto mt-5  justify-content-center py-3">
+                  <!-- Additional required wrapper -->
+                  <div class="swiper-wrapper">
+                      <!-- Slides -->
+                      <% @wishes.each do |wish| %>
+                        <div class="swiper-slide">
+                          <%= link_to wish_path(wish.id) do %>
+                              <%= attachment_image_tag wish, :wish_image,fallback: 'noimage.jpg', size: '300x300', class: "rounded main-image" %>
+                              <h4 class="text-decoration-none text-secondary mt-2 pt-3"><%= wish.wish_title %></h4>
+                              <p class="text-decoration-none text-secondary mt-2"><%= wish.span.strftime('%Y年%-m月%-d日') %>まで</p>
+                          <% end %>
+                        </div>
+                      <% end %>
+                  </div>
+              </div>
+          </div>
+    </div>
   </div>
-</div>
 
-<!--グラフ-->
-
-<div>
-  あなたの叶えたいこと
-  <div class="mt-2 pt-3">
-    <%= timeline @wishes.where(isCompleted:false).map{|wish|
-
-      [wish.wish_title, wish.created_at, wish.span]
-
-    } ,colors: ["#17a2b8"],timeline: { colorByRowLabel: true },class:"flex-no-wrap"%>
-  </div>
-</div>
+  <!--グラフ-->
 
 
-<!--最近追加した叶えたいこと-->
-<div>
-  <div>
+  <!--最近追加した叶えたいこと-->
+  <% if @wishes.where(isCompleted:false).any? %>
+  <div class="py-4 border-top">
     <div>
-      最近追加したもの
+      <div class="py-4">
+        <h3 class="text-secondary">最近追加したもの</h3>
+      </div>
+      <div class="d-flex flex-wrap">
+          <% @wishes.where(isCompleted:false).last(4).each do |wish| %>
+              <div class="col-md-2 mt-3 mx-5">
+                  <p class="intro-image-wrap">
+                      <%= link_to wish_path(wish.id) do %>
+                          <%= attachment_image_tag wish, :wish_image, fallback: 'noimage.jpg', size: '200x200', class: "intro-image rounded" %>
+                      <% end %>
+                  </p>
+                 <h5 class="text-secondary"><%= wish.wish_title %></h5>
+              </div>
+          <% end %>
+      </div>
+      <div class="d-flex justify-content-end"><%= link_to "一覧画面へ", wishes_path,class:"text-info text-decoration-none" %></div>
     </div>
-    <div class="row">
-        <% @wishes.where(isCompleted:false).last(4).each do |wish| %>
-            <div class="col-md-2 mt-3 mx-5">
-                <p class="intro-image-wrap">
-                    <%= link_to wish_path(wish.id) do %>
-                        <%= attachment_image_tag wish, :wish_image, fallback: 'noimage.jpg', size: '200x200', class: "intro-image rounded" %>
-                    <% end %>
-                </p>
-                <p><%= wish.wish_title %></p>
-
-            </div>
-        <% end %>
-    </div>
-    <div><%= link_to "叶えたいこと一覧へ", wishes_path %></div>
   </div>
-</div>
+  <% end  %>
 
-<!--最近叶えられたこと-->
-<div>
-  <div>
+  <!--最近叶えられたこと-->
+  <% if @wishes.where(isCompleted:true).any? %>
+  <div class="py-4 border-top">
     <div>
-      最近追加したもの
-    </div>
-    <div class="row">
-        <% @wishes.where(isCompleted:true).last(4).each do |wish| %>
-            <div class="col-md-2 mt-3 mx-5">
-                <p class="intro-image-wrap">
-                    <%= link_to wish_path(wish.id) do %>
-                        <%= attachment_image_tag wish, :wish_image, fallback: 'noimage.jpg', size: '200x200', class: "intro-image rounded" %>
-                    <% end %>
-                </p>
-                <p><%= wish.wish_title %></p>
+      <div class="py-4">
+        <h3 class="text-secondary">最近達成できたこと</h3>
+      </div>
+      <div class="d-flex flex-wrap">
+          <% @wishes.where(isCompleted:true).last(4).each do |wish| %>
+              <div class="col-md-2 mt-3 mx-5">
+                  <p class="intro-image-wrap">
+                      <%= link_to wish_path(wish.id) do %>
+                          <%= attachment_image_tag wish, :wish_image, fallback: 'noimage.jpg', size: '200x200', class: "intro-image rounded" %>
+                      <% end %>
+                  </p>
+                  <h5 class="text-secondary"><%= wish.wish_title %></h5>
 
-            </div>
-        <% end %>
+              </div>
+          <% end %>
+      </div>
+      <div class="d-flex justify-content-end"><%= link_to "一覧画面へ", wishes_path,class:"text-info text-decoration-none" %></div>
     </div>
-    <div>叶えたいこと一覧へ</div>
   </div>
-</div>
+  <% end  %>
+  <!--タグ一覧-->
+  <div class="py-4 border-top">
+    <div>
+      <div class="py-4">
+        <h3 class="text-secondary">主なタグ</h3>
+      </div>
+      <div class="d-flex flex-wrap">
+          <% @tag_list.last(4).each do |list| %>
+             <div class="tag_card p-4 ">
+                <div class="d-flex flex-column  align-items-center">
+                    <% if list.wishes.count != 0  %>
+                       <%= link_to wishes_path(tag_id:list.id) do %>
+                         <div >
+                                <%= attachment_image_tag list.wishes[0], :wish_image , fallback: "noimage.jpg", size:'200x200', class:"rounded-circle"%>
+                         </div>
+                         <!--タグによる叶えたいことリストの最初の要素の画像を表示-->
+                         <div class="text-center mt-2 pt-2">
+                           <h5 class="text-decoration-none text-secondary"><%= list.tag_name %></h5>
+                         </div>
+                      <% end  %>
+                   <% end %>
+                 </div>
+               </div>
+             <% end  %>
+       </div>
+      <div class="d-flex justify-content-end"><%= link_to "タグ一覧へ", tags_path ,class:"text-info text-decoration-none"%></div>
+    </div>
+  </div>
+  <!--グラフ-->
+  <% if @wishes.where(isCompleted:false).any? %>
+  <div class="pt-4 border-top">
+    <div class="py-4">
+      <h3 class="text-secondary">あなたの記録</h3>
+    </div>
+    <div class="mt-2 pt-3">
+      <%= timeline @wishes.where(isCompleted:false).map{|wish|
 
+        [wish.wish_title, wish.created_at, wish.span]
+
+      } ,colors: ["#17a2b8"],timeline: { colorByRowLabel: true },class:"flex-no-wrap"%>
+    </div>
+  </div>
+  <% end  %>
+
+</div>
+<% else %>
+   <div class="mt-2 pt-2"><%= render "wishes/none_wish_text" %></div>
+<% end  %>
+
+
+<!--画像スライダー-->
 <script>
   const swiper =  new Swiper('.swiper-container', {
   // Optional parameters

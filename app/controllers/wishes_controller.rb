@@ -28,11 +28,11 @@ class WishesController < ApplicationController
     if params[:tag_id]
 
       @tag = Tag.find(params[:tag_id])
-      @wishes = @tag.wishes.all
+      @wishes = @tag.wishes.where(user_id: current_user.id).all
     # 通常の叶えたいこと一覧表示
     else
       @wishes = user.wishes.all
-      @wish = current_user.wishes.new
+      @wish = current_user.wishes.where(user_id: current_user.id).new
 
     end
   end
@@ -53,6 +53,7 @@ class WishesController < ApplicationController
   end
 
   def show
+    user = User.find_by(id: current_user.id)
     @wish = Wish.find(params[:id])
     @wish_tags = @wish.tags
     @reviews = @wish.complete_reviews
@@ -88,6 +89,7 @@ class WishesController < ApplicationController
   def complete
     @wish = Wish.find(params[:id])
     @wish.update(isCompleted: true)
+    flash[:complete] = "Good life! 早速レビューを記録しよう！"
     redirect_to wish_path(@wish)
   end
 
@@ -131,6 +133,6 @@ class WishesController < ApplicationController
   private
 
   def wish_params
-    params.require(:wish).permit(:wish_title, :memo, :wish_image, :span, :importance, :url)
+    params.require(:wish).permit(:wish_title, :memo, :wish_image, :span, :importance, :url,:purpose, :action)
   end
 end

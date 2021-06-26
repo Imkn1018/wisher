@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :complete_reviews, dependent: :destroy
   has_many :tags, dependent: :destroy
 
-  attachment :image
+  attachment :user_image
   validates :name, presence: true
   # ゲストログイン機能
   def self.guest

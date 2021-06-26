@@ -73,6 +73,8 @@ group :production do
 end
 
 gem 'bootstrap', '~> 4.5'
+gem 'rails-bootstrap-tabs', '~> 0.2.4'
+
 gem 'font-awesome-rails'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'jquery-rails'

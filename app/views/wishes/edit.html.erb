@@ -60,17 +60,24 @@
 
       </tbody>
     </table>
-      <%= f.submit "変更を保存", class: "btn btn-success my-2 justify-content-center py-2" %>
+      <div class="d-flex justify-content-center">
+        <%= f.submit "変更を保存", class: "btn btn-success my-2 justify-content-center  py-2" %>
+      </div>
     <% end  %>
+    </div >
+    <div class="d-flex justify-content-around mt-4">
+      <div class="mx-2"><%= link_to "戻る",wish_path(@wish.id),class:"btn btn-secondary" %></div>
+      <div class="mx-2">
+        <% if @wish.isCompleted == false  %>
+          <%= link_to '削除する', wish_path(@wish.id), method: :delete,data: { confirm: '本当に消去しますか?' } ,class:"btn btn-danger" %>
+        <% else  %>
+          <%= link_to "叶えたいことに戻す", wishes_confirm_path(@wish.id) ,class:"btn btn-danger"%>
+        <% end  %>
+      </div>
     </div>
-      <% if @wish.isCompleted == false  %>
-      <%= link_to '削除する', wish_path(@wish.id), method: :delete,data: { confirm: '本当に消去しますか?' } %>
-      <% else  %>
-      <%= link_to "叶えたいことに戻す", wishes_confirm_path(@wish.id) %>
-      <% end  %>
   </div>
 
-   <div id="star-comf-<%= @wish.id %>"></div>
+
 
 </div>
 

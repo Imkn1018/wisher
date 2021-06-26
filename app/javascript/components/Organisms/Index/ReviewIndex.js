@@ -105,7 +105,7 @@ function ReviewIndex(props) {
     <ChakraProvider>
      <Text>達成レビューを記録する</Text>
      <Button onClick={onOpenCreate}>Create</Button>
-      <Wrap p={{ base: 5, md: 10 }} justify="center">
+      <Wrap p={4} justify="center">
         {reviews &&
           reviews.map((review, id) => (
             <WrapItem key={id}>

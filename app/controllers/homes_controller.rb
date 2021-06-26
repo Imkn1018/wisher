@@ -1,5 +1,10 @@
 class HomesController < ApplicationController
-  def top; end
+
+  def top
+
+      @wishes = Wish.all
+      @reviews = CompleteReview.all
+  end
 
   def guest_sign_in
     user = User.find_or_create_by!(name: 'guest1', email: 'guest@example.com') do |user|

@@ -19,29 +19,33 @@
 @import 'font-awesome';
 
 @import "tempusdominus-bootstrap-4.css";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,600&display=swap');
 
 body {
   font-size: 1rem;
   padding-top: 20px;
-
+  font-family: "Helvetica Neue",Helvetica,Arial,YuGothic,"Yu Gothic",游ゴシック体,游ゴシック,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"MS ゴシック","MS Gothic",sans-serif;
   margin: 0 auto;
   // min-height: 100vh;
   display: grid;
   grid-template:
-    "header header header"
-    ".....  ...... ....."
-    "left center right"
-    ".....  ...... ....."
-    "footer footer footer"
-
+    "header  header  header"
+    ".....  ......  ....."
+    "left  center  right"
+    ".....   ......  ....."
+    "footer  footer footer"
 }
 
+.main-nav{
+  height:90px;
+}
 header {
   grid-area: header;
   position:fixed;
   top:0;
   z-index:200;
   width: 100%;
+
 }
 .user-info {
   grid-area: left;
@@ -58,18 +62,16 @@ footer {
   grid-area: footer;
 }
 
-@media screen and (max-width: 1000px){
-  body {
-    grid-template:
-      "header"
-      "left"
-      "center"
-      "right"
-      "footer"
-  }
-  aside{
-    display:none;
-  }
+.top-about-text{
+  font-family: 'Nunito', sans-serif;
+}
+.top-image{
+   width: 100%;
+   background-repeat: no-repeat;
+   height: 50vh;
+   position: relative;
+   background-position: center;
+
 }
 
 .card{
@@ -88,44 +90,89 @@ footer {
     padding: .75rem 1rem;
 }
 
+.menu {
+    flex:1;
+    width: 100%;
+    background: #4499cc;
+    position: fixed;
+    bottom: 0;
+    z-index:999;
+}
+
+
 .tag_card {
   // border:none;
-
-
   padding:10px;
 }
+@media(min-width: 768px) {
+    .menu {
+        display: none;
+    }
+}
+
 .wish_card {
   width: 320px;
   max-height: 500px;
   background-color: #fff;
   border-radius: 1rem;
   box-shadow: 0 0.5em 1em -0.125em;
+  transition: .3s;
+}
+
+.wish_card:hover{
+  box-shadow: 10px 10px 10px 10px  rgba(0,0,0,0.5);
+  transform: translateY(-10px);
+  transition-duration: 0.3s;
+}
+
+.wish-detail-card{
+  width: 400px;
+  max-height: 500px;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.5em 1em -0.125em;
+  transition: .3s;
+  position: sticky;
+  margin-bottom: 0;
+  top: 10px;
+  z-index: 1;
+}
+
+.wish-table{
+ width: 800px;
 }
 
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 1000px){
+  body {
+    grid-template:
+      "header"
+      "left"
+      "center"
+      "right"
+      "footer"
+  }
+}
+
+
+@media screen and (max-width: 600px) {
   /*ウィンドウ幅が最大479pxの場合に適用*/
-  aside {
-    position: fixed;
-    bottom:0;
-    width:100%;
-    ul{
-      display:flex;
-    }
-    li{
-      flex:1;
-    }
+  .menu{
+    flex:1;
+  }
+  .header-nav{
+    display:none;
   }
 
 }
 
 .swiper-container {
-  width: 800px;
-  height: 400px;
-  margin:  0 auto;
-  // padding-top: 50px;
-  // padding-bottom: 50px;
+  width: 1000px;
+  height: 500px;
+}
 
+.flip-swiper{
+  width: 400px;
 }
 
 .swiper-slide {
