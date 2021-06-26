@@ -5,22 +5,6 @@ class WishesController < ApplicationController
     @wish = current_user.wishes.new
   end
 
-  def unfinish
-     user = User.find_by(id: current_user.id)
-    @tag_list = user.tags.all
-    #  タグ内の叶えたいこと一覧表示
-    if params[:tag_id]
-
-      @tag = Tag.find(params[:tag_id])
-      @wishes = @tag.wishes.where(isCompleted: false)
-    # 通常の叶えたいこと一覧表示
-    else
-      @wishes = user.wishes.where(isCompleted: false)
-      @wish = current_user.wishes.new
-
-    end
-  end
-
   def index
     user = User.find_by(id: current_user.id)
     @tag_list = user.tags.all
@@ -81,7 +65,6 @@ class WishesController < ApplicationController
   def destroy
     @wish = Wish.find(params[:id])
     @wish.destroy
-
     redirect_to wishes_path
   end
 

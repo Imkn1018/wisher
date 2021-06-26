@@ -71,7 +71,7 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
-
+gem 'listen'
 gem 'bootstrap', '~> 4.5'
 gem 'rails-bootstrap-tabs', '~> 0.2.4'
 
