@@ -5,7 +5,7 @@
 <% @tag_list.each do |list| %>
   <div class="tag_list">
     <% if list.wishes.where(isCompleted:true).count != 0  %>
-       <%=link_to "#{list.tag_name} #{list.wishes.where(isCompleted:true).count}",wishes_path(tag_id:list.id),class:"text-decoration-none rounded-pill  bg-light p-3 m-2 text-secondary"%>
+       <%=link_to "#{list.tag_name} #{list.wishes.where(isCompleted:true).count}",wishes_path(tag_id:list.id),class:"text-decoration-none rounded-pill  bg-white p-3 m-2 text-secondary"%>
     <% end %>
   </div>
 <% end  %>

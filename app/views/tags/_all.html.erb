@@ -5,7 +5,7 @@
 <% @tag_list.last(10).each do |list| %>
 <div class="tag_list">
     <% if list.wishes.count != 0  %>
-       <p><%=link_to "#{list.tag_name} ",wishes_path(tag_id:list.id), class:"text-secondary text-decoration-none rounded-pill bg-light p-3 m-2 "%></p>
+       <p><%=link_to "#{list.tag_name} ",wishes_path(tag_id:list.id), class:"text-secondary text-decoration-none rounded-pill bg-white p-3 m-2 "%></p>
     <% end %>
  </div>
 <% end  %>

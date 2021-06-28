@@ -23,11 +23,12 @@
 
 body {
 
+  background-color: #f5f5f5;
   font-size: 1rem;
   padding-top: 20px;
   font-family: "Helvetica Neue",Helvetica,Arial,YuGothic,"Yu Gothic",游ゴシック体,游ゴシック,"ヒラギノ角ゴ ProN W3","Hiragino Kaku Gothic ProN","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"MS ゴシック","MS Gothic",sans-serif;
   margin: 0 auto;
-  // min-height: 100vh;
+  min-height: 100vh;
   display: grid;
   grid-template:
     "header  header  header"
@@ -108,11 +109,17 @@ footer {
 
 .wish_card {
   width: 320px;
-  max-height: 500px;
   background-color: #fff;
   border-radius: 1rem;
   box-shadow: 0 0.5em 1em -0.125em;
   transition: .3s;
+}
+
+.sample_wish_card {
+  width: 320px;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0.5em 1em -0.125em;
 }
 
 .wish_card:hover{
@@ -198,3 +205,9 @@ footer {
   align-items: center;
  }
 
+.footer_img{
+ background-size: cover;
+  background-image: image-url("footer.jpg");
+
+  width: 100%;
+}

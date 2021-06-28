@@ -58,7 +58,11 @@
               </div>
           <% end %>
       </div>
-      <div class="d-flex justify-content-end"><%= link_to "一覧画面へ", wishes_path,class:"text-info text-decoration-none" %></div>
+      <div class="d-flex justify-content-end">
+        <%= link_to wishes_path do%>
+          <h5 class="text-info text-decoration-none" >一覧画面へ</h5>
+        <% end  %>
+      </div>
     </div>
   </div>
   <% end  %>
@@ -83,7 +87,11 @@
               </div>
           <% end %>
       </div>
-      <div class="d-flex justify-content-end"><%= link_to "一覧画面へ", wishes_path,class:"text-info text-decoration-none" %></div>
+      <div class="d-flex justify-content-end">
+        <%= link_to wishes_path do%>
+          <h5 class="text-info text-decoration-none" >一覧画面へ</h5>
+        <% end  %>
+      </div>
     </div>
   </div>
   <% end  %>
@@ -112,7 +120,11 @@
                </div>
              <% end  %>
        </div>
-      <div class="d-flex justify-content-end"><%= link_to "タグ一覧へ", tags_path ,class:"text-info text-decoration-none"%></div>
+       <div class="d-flex justify-content-end">
+        <%= link_to tags_path do%>
+          <h5 class="text-info text-decoration-none" >タグ一覧へ</h5>
+        <% end  %>
+      </div>
     </div>
   </div>
   <!--グラフ-->

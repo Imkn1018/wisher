@@ -1,13 +1,13 @@
 <div class="mt-3 pt-4 ">
     <% flash.each do |key, value| %>
-        <h5 class="bg-success text-white"><%= content_tag(:div, value, class: "#{key}") %></h5>
+        <h5 class="alert alert-success"><%= content_tag(:div, value, class: "#{key}") %></h5>
     <% end %>
 </div>
 <div class="top-bg">
 <div class="container d-flex flex-column align-items-center ">
    <!--TOP画面-->
    <div>
-       <h1 class="top-about-text pt-1 border-bottom">About Wisher</h1>
+       <h1 class="top-about-text pt-1 border-bottom">Wisher</h1>
    </div>
    <div class="py-3 mx-auto">
      <div ><image src="https://source.unsplash.com//DLICfSD33as" class="top-image"/>
@@ -24,60 +24,23 @@
     <h2 class="text-center mt-3">wisherは、人生で叶えたいことを記録するダイアリーアプリです。</h2>
    </div>
 
-    <!--叶えたいを言葉に-->
-    <div class="d-flex justify-content-around mt-3">
-        <div class="pt-4 mt-3 ">
-          <h2>「叶えたい」を言葉に</h2>
-          <p class="pt-2 border-top">人生で叶えたいことはなんですか？</p>
-          <p class="mt-1">叶えたいことは頭の中だけでは、整理しきれないもの。</p>
-          <p class="mt-1">Wisherを使って人生で叶えたいことを記録してみませんか？？</p>
-        </div>
-        <div class="swiper-container flip-swiper   py-3  my-2">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <% @wishes.last(5).each do |wish| %>
-                  <div class="swiper-slide">
-                        <div class="d-flex flex-column align-items-center">
-                          <%= attachment_image_tag wish, :wish_image,fallback: 'noimage.jpg', size: '300x300', class: "rounded main-image" %>
-                          <h3 class="text-secondary pt-3"><%= wish.wish_title %></h3>
-                        </div>
-                  </div>
-                <% end %>
-            </div>
-        </div>
-    </div>
-
-    <!--叶えられたを言葉に-->
-    <div class="d-flex justify-content-around mt-3">
-        <div class="swiper-container flip-swiper py-3 my-2">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <% @reviews.last(5).each do |review| %>
-                  <div class="swiper-slide">
-                        <div class="d-flex flex-column align-items-center">
-                          <%= image_tag review.complete_image ,fallback: 'noimage.jpg',size: '300x300', class: "rounded main-image bt-1"  %>
-                          <h3 class="text-secondary pt-4 border-top"><%= review.review_title %></h3>
-                        </div>
-                  </div>
-                <% end %>
-            </div>
-        </div>
-        <div class="pt-4 mt-4 ml-3">
-            <h2>「叶えられた！」を言葉に</h2>
-            <p class="pt-2 border-top">夢が叶った時あなたはどんな感情になりますか？</p>
-            <p class="mt-1">夢を叶えられた経験は一生の宝物。</p>
-          　<p class="mt-1">叶えられた時の思いも一緒に記録してみませんか？？</p>
-        </div>
-    </div>
-
-   <!--こんな人におすすめ-->
-
-
-   <div>
-
+   <!--叶えたいを言葉に-->
+   <div class="mt-5">
+    <%= render "homes/wish" %>
    </div>
+    <!--叶えられたを言葉に-->
+   <div class="my-5 pt-5">
+    <%= render "homes/dones" %>
+   </div>
+  <!--いますぐ始める-->
+  <div class="footer_img my-2">
+    <div class="d-flex flex-column align-items-center ">
+      <div><%= link_to "いますぐはじめる" ,new_user_registration_path,class:"btn btn-primary py-2 my-2"  %></div>
+      <div><%= link_to "閲覧用の方はこちらから" ,homes_guest_sign_in_path,class:"btn btn-primary my-2 py-2"  %></div>
+    </div>
+  </div>
+
+
  </div>
 </div>
 

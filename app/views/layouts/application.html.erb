@@ -25,11 +25,11 @@
             <% logo_click = root_path %>
           <% end %>
           <%= link_to logo_click do %>
-            <%= image_tag "logo.png", size: "200x140", class: "navbar-brand ml-4 pl-4 bg-none" %>
+            <%= image_tag "linkedin_banner_image_1.png", size: "175x80", class: "navbar-brand ml-4 pl-4 bg-none" %>
           <% end %>
         </div>
         <div class="collapse navbar-collapse header-nav" id="navbarNavDropdown">
-          <ul class="navbar-nav m-4 p-4 ">
+          <ul class="navbar-nav m-4 p-4 my-auto ">
             <!--ログイン-->
             <% if user_signed_in? %>
               <li class= "border-light nav-link text-info m-3" >
@@ -37,9 +37,9 @@
                   <%= attachment_image_tag(@user, :user_image, fallback: "noimage.jpg",size:"50x50",class:"rounded-circle border") %>
                 <% end  %>
               </li>
-              <li><%= link_to "新規作成", new_wish_path, class: "btn btn-outline-info nav-link m-3" %></li>
-              <li><%= link_to "一覧画面", wishes_path,  class: "btn btn-outline-info nav-link m-3" %></li>
-              <li><%= link_to "ユーザー情報編集", edit_users_path, class: "btn btn-outline-info nav-link m-3" %></li>
+              <li class="my-auto"><%= link_to "新規作成", new_wish_path, class: "btn btn-outline-info nav-link m-3" %></li>
+              <li class="my-auto"><%= link_to "一覧画面", wishes_path,  class: "btn btn-outline-info nav-link m-3" %></li>
+              <li class="my-auto"><%= link_to "ユーザー情報編集", edit_users_path, class: "btn btn-outline-info nav-link m-3" %></li>
               <!--ログイン前-->
             <% else %>
               <li><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-primary nav-link m-2" %></li>
@@ -51,7 +51,7 @@
     </nav>
   </header>
 
-  <main class="py-3 mb-3 ">
+  <main class="py-2 mb-3 ">
     <%= yield %>
   </main>
    <div class="menu navbar bg-white justify-content-around">

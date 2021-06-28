@@ -103,8 +103,7 @@ function ReviewIndex(props) {
 
   return (
     <ChakraProvider>
-     <Text>達成レビューを記録する</Text>
-     <Button onClick={onOpenCreate}>Create</Button>
+     <Button onClick={onOpenCreate} >達成レビューを記録する</Button>
       <Wrap p={4} justify="center">
         {reviews &&
           reviews.map((review, id) => (
@@ -171,7 +170,7 @@ function ReviewIndex(props) {
                 </Stack>
               </ModalBody>
               <ModalFooter>
-                <Button onClick={deleteReview} bg="red">
+                <Button onClick={deleteReview}>
                   delete
                 </Button>
               </ModalFooter>
@@ -187,11 +186,10 @@ function ReviewIndex(props) {
           autoFocus={false}
           motionPreset="scale"
           isCentered={true}
-          p={3}
+          p={4}
         >
           <ModalOverlay>
-            <ModalContent  p={7} py="auto">
-              <ModalHeader>Create Review</ModalHeader>
+            <ModalContent  p={5} py="auto">
               <ModalCloseButton
                 onClick={() => {
                   setReviewTitle('');
@@ -200,6 +198,7 @@ function ReviewIndex(props) {
                   onCloseCreate();
                 }}
               />
+               <Text fontSize="lg" fontWeight="bold" p={3}>新しくレビューを記録する</Text>
               <ModalBody mx={4}>
                 <Stack spacing={4}>
                   <FormControl>
@@ -210,14 +209,14 @@ function ReviewIndex(props) {
                     />
                   </FormControl>
                   <FormControl>
-                    <FormLabel>review</FormLabel>
+                    <FormLabel>レビュー本文</FormLabel>
                     <Input
                       value={review}
                       onChange={(e) => setReview(e.target.value)}
                     />
                   </FormControl>
                   <FormControl>
-                    <FormLabel>Image</FormLabel>
+                    <FormLabel>画像</FormLabel>
                     <Input
                       type="file"
                       accept="image/*"
