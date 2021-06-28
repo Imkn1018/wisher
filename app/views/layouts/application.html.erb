@@ -42,9 +42,9 @@
               <li class="my-auto"><%= link_to "ユーザー情報編集", edit_users_path, class: "btn btn-outline-info nav-link m-3" %></li>
               <!--ログイン前-->
             <% else %>
-              <li><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-primary nav-link m-2" %></li>
-              <li><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary nav-link m-2" %></li>
-              <li><%= link_to 'ゲストログイン（閲覧用）', homes_guest_sign_in_path, method: :post,class:"btn btn-info m-2" %></li>
+              <li><%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-info nav-link m-2" %></li>
+              <li><%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-info nav-link m-2" %></li>
+              <li><%= link_to 'ゲストログイン（閲覧用）', homes_guest_sign_in_path, method: :post,class:"btn btn-outline-info nav-link m-2" %></li>
             <% end %>
           </ul>
         </div>
@@ -63,7 +63,7 @@
      <% else %>
       <li class="nav-link"><%= link_to "新規登録", new_user_registration_path, class: "btn btn-info hover text-decoration-none" %></li>
       <li class="nav-link"><%= link_to "ログイン", new_user_session_path, class: "btn btn-info hover text-decoration-none" %></li>
-      <li class="nav-link"><%= link_to 'ゲストログイン', homes_guest_sign_in_path, method: :post,class:"btn btn-infobtn btn-info hover text-decoration-none" %></li>
+      <li class="nav-link"><%= link_to 'ゲストログイン', homes_guest_sign_in_path, method: :post,class:"btn btn-info hover text-decoration-none" %></li>
      <% end %>
     </div><!-- menu -->
 
