@@ -44,36 +44,3 @@
  </div>
 </div>
 
-<script>
-  const swiper =  new Swiper('.swiper-container', {
-  // Optional parameters
-  slidesPerView: 3, // 何枚のスライドを表示するか
-  spaceBetween: 20, // スライド間の余白サイズ(ピクセル)
-  direction: 'horizontal',
-  grabCursor: true,
-  centeredSlides: true,
-
-  loop: true,
-  effect: "flip",
-    autoplay: {
-      delay: 3000, // スライドが切り替わるまでの表示時間(ミリ秒)
-      stopOnLast: false, // 最後のスライドまで表示されたら自動再生を中止するか
-      disableOnInteraction: false // ユーザーのスワイプ操作を検出したら自動再生を中止するか
-    },
-
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
-
-  // Navigation arrows
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-
-  // And if we need scrollbar
-
-})
-
-</script>

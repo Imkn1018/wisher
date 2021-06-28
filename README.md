@@ -29,28 +29,28 @@
 
 ② 叶えたいことリストを作成
 
-・上記項目を入力して、追加ボタンを押すと、叶えたいことリストに追加される。
+・項目を入力して、追加ボタンを押すと、叶えたいことリストに追加される。
 
 
 ーーーー途中経過ーーーー
 
 
 ③ 途中で夢の内容に追記・変更を加えたいと思ったら
-　　③−1 追記・編集	
+　　③−1 追記・編集
 　　③−2 削除
 
 ーーーー叶えられたらーーーー
 
 ④ 叶えたいことを達成できたら
- 
+
  ・叶えられた項目に対して達成ボタンを押し、その時の心情や状況を記録する
- 
+
  ・叶えられたものは、叶えられたことリストに追加される。
 
 ## 設計書
 ・要件定義書
 　<https://docs.google.com/document/d/1-jfN9ebUwSLuOjD60FhBhURpqWoh27RZlV5UoHzDyv0/edit?usp=sharing>
- 
+
 ・機能一覧
 <https://docs.google.com/spreadsheets/d/12HNKWRsThtJS5oGFtVrjh3Jvajljkf82Vf_33lYElls/edit?usp=sharing>
 
@@ -74,7 +74,7 @@
 
 ## 開発環境
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,TypeScript,Ruby,SQL
+- 言語：HTML,CSS,JavaScript,Ruby,MySQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：React
 - IDE：Cloud9
