@@ -67,13 +67,30 @@ footer {
 .top-about-text{
   font-family: 'Nunito', sans-serif;
 }
-.top-image{
 
+.top-image{
+    background-image: image-url("topimage.jpg");
+    background-size: cover;
    background-repeat: no-repeat;
-   height: 50vh;
+   height: 60vh;
    position: relative;
    background-position: center;
-
+   width: 100%;
+   opacity: 0;
+   animation-name: fadein-bottom;
+   animation-duration: 1.5s;
+   animation-timing-function: ease-out;
+   animation-fill-mode: forwards;
+}
+@keyframes fadein-bottom {
+   0% {
+      opacity: 0;
+      transform: translateY(20px);
+   }
+   100% {
+      opacity: 1;
+      transform: translateY(0);
+   }
 }
 
 .card{
@@ -202,8 +219,9 @@ footer {
  }
 
 .footer_img{
- background-size: cover;
-  background-image: image-url("footer.jpg");
 
+  background-image: image-url("footer.jpg");
+　height: 300px;
   width: 100%;
+  background-size: cover;
 }

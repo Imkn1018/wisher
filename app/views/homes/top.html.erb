@@ -3,18 +3,29 @@
         <h5 class="alert alert-success"><%= content_tag(:div, value, class: "#{key}") %></h5>
     <% end %>
 </div>
-<div class="top-bg">
+
 <div class="container d-flex flex-column align-items-center ">
    <!--TOP画面-->
-   <div>
-       <h1 class="top-about-text pt-1 border-bottom">Wisher</h1>
-   </div>
-   <div class="py-3 mx-auto">
-     <div ><image src="https://source.unsplash.com//DLICfSD33as" class="top-image"/>
+
+   <div class="pb-2 mx-auto top-image d-flex align-items-center">
+     <div class="mx-auto my-auto d-flex flex-column align-items-center">
+        <h1 class="text-white top-about-text pb-3 border-bottom border-white">Wisher</h1>
+        <h4 class="text-white py-2" >叶えたいことを記録する。</h4>
+        <h6 class="text-white pt-2 pb-4" >人生を前向きに生きるためのダイアリー</h6>
+         <% if user_signed_in? %>
+            <div class="d-flex justify-content-around ">
+              <div><%= link_to "叶えたいことを追加する" ,new_wish_path,class:"btn btn-info p-3 my-2"  %></div>
+            </div>
+          <% else %>
+            <div class="d-flex justify-content-around ">
+              <div><%= link_to "いますぐはじめる" ,new_user_registration_path,class:"btn btn-primary py-2 my-2"  %></div>
+              <div><%= link_to "閲覧用の方はこちらから" ,homes_guest_sign_in_path,class:"btn btn-primary my-2 py-2"  %></div>
+            </div>
+          <% end %>
      </div>
    </div>
    <!--キャッチコピー-->
-   <div class="py-3 border-top">
+   <div class="py-4 mt-4 border-top">
       <h2 class="text-center">「叶えたい」を言葉に。</h2>
       <h2 class="text-center">「叶えられた」を言葉に。</h2>
    </div>
@@ -33,14 +44,21 @@
     <%= render "homes/dones" %>
    </div>
   <!--いますぐ始める-->
-  <div class="footer_img my-2">
-    <div class="d-flex flex-column align-items-center ">
-      <div><%= link_to "いますぐはじめる" ,new_user_registration_path,class:"btn btn-primary py-2 my-2"  %></div>
-      <div><%= link_to "閲覧用の方はこちらから" ,homes_guest_sign_in_path,class:"btn btn-primary my-2 py-2"  %></div>
-    </div>
-  </div>
+  <% if user_signed_in? %>
+      <div class="footer_img my-2">
+        <div class="d-flex flex-column align-items-center ">
+          <div><%= link_to "叶えたいことを追加する" ,new_wish_path,class:"btn btn-primary py-2 my-2"  %></div>
+        </div>
+      </div>
+  <% else %>
+      <div class="footer_img my-2">
+        <div class="d-flex flex-column align-items-center ">
+          <div><%= link_to "いますぐはじめる" ,new_user_registration_path,class:"btn btn-primary py-2 my-2"  %></div>
+          <div><%= link_to "閲覧用の方はこちらから" ,homes_guest_sign_in_path,class:"btn btn-primary my-2 py-2"  %></div>
+        </div>
+      </div>
+  <% end %>
 
 
  </div>
-</div>
 
