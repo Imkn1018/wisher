@@ -27,7 +27,9 @@
             <div class="d-flex flex-column  align-items-center text-align-center pt-2 mt-2">
               <div><%= attachment_image_tag(wish, :wish_image , fallback: "noimage.jpg",size:'200x200', class:"rounded-circle") %></div>
               <div class="pt-3 text-center text-info"><%= wish.wish_title %></div>
-              <div class="pt-1 text-center"><%= wish.span.strftime('%Y/%-m/%-d') %></div>
+              <% if wish.span %>
+                <div class="pt-1 text-center"><%= wish.span.strftime('%Y/%-m/%-d') %></div>
+              <% end  %>
               <div class="d-flex flex-wrap justify-content-around p-2">
                   <% wish.tags.each do |wish_tag| %>
                       <div class="rounded-pill bg-light p-3 m-2">

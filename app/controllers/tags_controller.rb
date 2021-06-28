@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   def index
-    @tag_list = Tag.all
+    user = User.find_by(id: current_user.id)
+    @tag_list = user.tags.all
   end
 
   def dones

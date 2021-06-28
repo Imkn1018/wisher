@@ -20,7 +20,7 @@
           <%= attachment_image_tag(@wish, :wish_image, fallback: "noimage.jpg", size:'200x200', class:"rounded-circle border") %>
         </div>
         <tr>
-          <td>タイトル</td>
+          <td>タイトル<span class="px-2 text-bold text-danger">*</span></td>
           <td><%= f.text_field :wish_title, placeholder: "",class: "form-control"%></td>
         </tr>
          <tr>
@@ -40,7 +40,7 @@
           <td><%= f.date_field :span, class: "form-controlt" %></td>
         </tr>
         <tr>
-            <td>重要度</td>
+            <td>重要度<span class="px-2 text-bold text-danger">*</span></td>
             <td id="rating-form"><%= f.hidden_field :importance,:value => 'score'%></td>
         </tr>
         <tr>

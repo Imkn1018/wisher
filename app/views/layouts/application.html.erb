@@ -52,6 +52,9 @@
   </header>
 
   <main class="py-2 mb-3 ">
+    <% if alert  %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end  %>
     <%= yield %>
   </main>
    <div class="menu navbar bg-white justify-content-around">

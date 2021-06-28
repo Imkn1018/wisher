@@ -28,7 +28,9 @@
                <div class="pt-3 text-center text-info text-bold"><%= @wish.wish_title %></div>
             <% end  %>
             <% if @wish.isCompleted == false%>
+             <% if @wish.span %>
                 <div class="py-3 text-center"><%= @wish.span.strftime('%Y年%-m月%-d日までに達成予定') %></div>
+              <% end  %>
             <% end %>
             <!--ボタン-->
             <div class="d-flex justify-content-end mx-auto mt-4">

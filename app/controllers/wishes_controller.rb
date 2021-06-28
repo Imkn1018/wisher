@@ -30,7 +30,7 @@ class WishesController < ApplicationController
       @wish.save_tag(tag_list, current_user)
       redirect_to wishes_path
     else
-      flash[:failed] = 'タイトルは必須項目です'
+      flash[:failed] = 'タイトル、重要度は必須項目です'
       render :new
 
     end
@@ -56,7 +56,7 @@ class WishesController < ApplicationController
       @wish.save_tag(tag_list, current_user)
       redirect_to wish_path(@wish)
     else
-      flash[:failed] = 'タイトルは必須項目です'
+      flash[:failed] = 'タイトル、重要度は必須項目です'
       render :edit
     end
   end

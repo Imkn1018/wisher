@@ -1,3 +1,4 @@
+
 <div class="card">
   <div class="d-flex flex-column  align-items-center text-align-center pt-2">
 
@@ -24,6 +25,11 @@
   </div>
 
   <div class="field my-2">
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password, autocomplete: "current-password",required: true, class:"form-control"  %>
+  </div>
+
+  <div class="field my-2">
     <%= f.label :password %><br/>
     <%= f.password_field :password,placeholder:"半角英数字6文字以上", autocomplete: "new-password", required: true, class:"form-control" %>
   </div>
@@ -37,6 +43,9 @@
     <%= f.submit "登録情報を更新する" ,class: "btn bg-primary btn-block text-white py-2"%>
   </div>
 <% end %>
+<div class="my-3 py-3">
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-info nav-link m-2 my-2" %>
+</div>
 <div class="mt-3 py-4">
 <h3>退会処理</h3>
 <p><%= button_to "退会する", registration_path(resource_name), data: { confirm: "これまでのデータは全て削除されますがよろしいですか？" }, method: :delete %></p>
@@ -45,6 +54,4 @@
 </div>
 </div>
 </div>
-<div class="my-3 py-3">
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-info nav-link m-2 my-2" %>
-</div>
+

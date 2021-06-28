@@ -26,7 +26,9 @@
                           <%= link_to wish_path(wish.id) do %>
                               <%= attachment_image_tag wish, :wish_image,fallback: 'noimage.jpg', size: '300x300', class: "rounded main-image" %>
                               <h4 class="text-decoration-none text-secondary mt-2 pt-3"><%= wish.wish_title %></h4>
-                              <p class="text-decoration-none text-secondary mt-2"><%= wish.span.strftime('%Y年%-m月%-d日') %>まで</p>
+                              <% if wish.span  %>
+                                <p class="text-decoration-none text-secondary mt-2"><%= wish.span.strftime('%Y年%-m月%-d日') %>まで</p>
+                              <% end  %>
                           <% end %>
                         </div>
                       <% end %>

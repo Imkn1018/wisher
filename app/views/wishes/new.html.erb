@@ -14,7 +14,7 @@
 
        <tbody>
         <tr>
-          <td>タイトル</td>
+          <td>タイトル<span class="px-2 text-bold text-danger">*</span></td>
           <td><%= f.text_field :wish_title, placeholder: "",class: "form-control"%></ %></td>
         </tr>
          <tr>
@@ -35,7 +35,7 @@
         </tr>
         <tr>
 
-            <td>重要度</td>
+            <td>重要度<span class="px-2 text-bold text-danger">*</span></td>
             <td id="rating-form"><%= f.hidden_field :importance, :value => 'score'%></td>
 
         </tr>
