@@ -1,9 +1,10 @@
 <%= link_to tags_path do %>
   <h5 class="text-decoration-none">タグ一覧</h5>
 <% end %>
+
 <div class="d-flex row mt-2 pt-3">
-<% @tag_list.last(10).each do |list| %>
-<div class="tag_list">
+<% tag_list.last(10).each do |list| %>
+<div class="tag_list d-flex">
     <% if list.wishes.count != 0  %>
        <p><%=link_to "#{list.tag_name} ",wishes_path(tag_id:list.id), class:"text-secondary text-decoration-none rounded-pill bg-white p-3 m-2 "%></p>
     <% end %>

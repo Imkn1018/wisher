@@ -8,6 +8,7 @@ class WishesController < ApplicationController
   def index
     user = User.find_by(id: current_user.id)
     @tag_list = user.tags.all
+    
     #  タグ内の叶えたいこと一覧表示
     if params[:tag_id]
 
